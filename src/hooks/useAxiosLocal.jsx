@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosLocal = axios.create({
-  baseURL: `${import.meta.env.VITE_serverUrl}`,
+  baseURL: "http://localhost:3000",
 });
 
 const useAxiosLocal = () => {

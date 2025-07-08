@@ -1,5 +1,4 @@
 import React from "react";
-import "../Pages/Dashboard/dashboard.css";
 import { MdMenu } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
 import { FaArrowLeft } from "react-icons/fa";

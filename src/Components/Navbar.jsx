@@ -1,6 +1,5 @@
 import React from "react";
 import { IoMenu } from "react-icons/io5";
-import logo from "../assets/logo.png";
 import { Link, NavLink } from "react-router";
 import Swal from "sweetalert2";
 import Theme from "./Theme";
@@ -51,10 +50,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/">
-          <div className="hidden lg:block">
             <Logo />
-          </div>
-          <img className="h-10 lg:hidden" src={logo} alt="Logo" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
