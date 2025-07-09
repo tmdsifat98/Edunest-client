@@ -13,20 +13,20 @@ const TeacherRequest = () => {
   const { data: teachers = [], isLoading } = useQuery({
     queryKey: ["pendingTeachers"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/teachers?status=pending");
+      const res = await axiosSecure.get("/teachers");
       return res.data;
     },
   });
 
+  console.log(teachers);
+
   // Approve teacher request
   const approveMutation = useMutation({
     mutationFn: async (teacher) => {
-      // 1) Update teacher status
       await axiosSecure.patch(`/teachers/${teacher._id}`, {
         status: "approved",
       });
 
-      // 2) Update user role
       await axiosSecure.patch(`/users/role/${teacher.email}`, {
         role: "teacher",
       });
@@ -40,10 +40,28 @@ const TeacherRequest = () => {
     },
   });
 
+  const handleReject = async (teacher) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This will permanently reject the request!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, reject it!",
+    });
+
+    if (result.isConfirmed) {
+      rejectMutation.mutate(teacher);
+    }
+  };
+
   // Reject teacher request
   const rejectMutation = useMutation({
-    mutationFn: async (id) => {
-      await axiosSecure.delete(`/teachers/${id}`);
+    mutationFn: async (teacher) => {
+      await axiosSecure.patch(`/teachers/${teacher._id}`, {
+        status: "rejected",
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["pendingTeachers"]);
@@ -55,18 +73,20 @@ const TeacherRequest = () => {
   });
 
   if (isLoading) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
 
   return (
     <div className="overflow-x-auto p-4 bg-base-100 shadow rounded">
-      <h2 className="text-xl font-bold mb-4 text-primary">All Teacher Requests</h2>
-      <table className="table table-zebra w-full">
+      <h2 className="text-xl font-bold mb-4 text-primary">
+        All Teacher Requests
+      </h2>
+      <table className="table table-zebra w-full text-center">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Name</th>
+            <th>SL</th>
             <th>Image</th>
+            <th>Name</th>
             <th>Experience</th>
             <th>Title</th>
             <th>Category</th>
@@ -78,14 +98,17 @@ const TeacherRequest = () => {
           {teachers.map((teacher, index) => (
             <tr key={teacher._id}>
               <td>{index + 1}</td>
-              <td>{teacher.name}</td>
               <td>
-                <img
-                  src={teacher.image}
-                  alt="teacher"
-                  className="w-12 h-12 rounded-full object-cover"
-                />
+                <div className="flex items-center justify-center">
+                  <img
+                    src={teacher.image}
+                    alt="teacher"
+                    className="w-10 h-10 object-cover"
+                  />
+                </div>
               </td>
+              <td>{teacher.name}</td>
+
               <td>{teacher.experience}</td>
               <td>{teacher.title}</td>
               <td>{teacher.category}</td>
@@ -102,19 +125,23 @@ const TeacherRequest = () => {
                   {teacher.status}
                 </span>
               </td>
-              <td className="flex gap-2">
-                <button
-                  onClick={() => approveMutation.mutate(teacher)}
-                  className="btn btn-xs btn-success flex items-center gap-1"
-                >
-                  <FaCheck /> Approve
-                </button>
-                <button
-                  onClick={() => rejectMutation.mutate(teacher._id)}
-                  className="btn btn-xs btn-error flex items-center gap-1"
-                >
-                  <FaTimes /> Reject
-                </button>
+              <td>
+                <div className="flex gap-2 items-center justify-center">
+                  <button
+                    onClick={() => approveMutation.mutate(teacher)}
+                    disabled={teacher.status === "rejected"}
+                    className="btn btn-xs btn-success flex items-center gap-1"
+                  >
+                    <FaCheck /> Approve
+                  </button>
+                  <button
+                    onClick={() => handleReject(teacher)}
+                    disabled={teacher.status === "rejected"}
+                    className="btn btn-xs btn-error flex items-center gap-1"
+                  >
+                    <FaTimes /> Reject
+                  </button>
+                </div>
               </td>
             </tr>
           ))}

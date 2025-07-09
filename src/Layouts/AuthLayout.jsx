@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 const AuthLayout = () => {
     return (
-        <div>
+        <div className='dark:bg-gray-900'>
             <Outlet />
         </div>
     );

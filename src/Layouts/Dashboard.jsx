@@ -108,7 +108,7 @@ const Dashboard = () => {
             </NavLink>
 
             <NavLink
-              to="/dashboard/allUsers"
+              to="/dashboard/users"
               className="flex items-center gap-2 px-4 py-2"
             >
               <FaChalkboardTeacher className="text-lg" />

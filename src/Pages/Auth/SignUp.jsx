@@ -28,7 +28,6 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
     const { email, password, name } = data;
     createUser(email, password)
       .then((res) => {
@@ -37,18 +36,20 @@ const SignUp = () => {
           displayName: name,
           photoURL: imageUrl || "https://i.ibb.co/Rk2y0f77/default.webp",
         }).then(() => {
-          axiosLocal.post("/users", { email, name }).then((res) => {
-            if (res.data.insertedId) {
-              navigate("/");
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Account has been created successfully!",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
-          });
+          axiosLocal
+            .post("/users", { email, name, image: user.photoURL })
+            .then((res) => {
+              if (res.data.insertedId) {
+                navigate("/");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Account has been created successfully!",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+            });
         });
       })
       .catch((err) => {

@@ -45,6 +45,7 @@ const TeachOnEduNest = () => {
     try {
       const teacherData = {
         ...data,
+        email:user.email,
         image:
           imageUrl ||
           user?.photoURL ||

@@ -10,6 +10,7 @@ import TeachOnEduNest from "../Pages/RoutingPage/TeachOnEduNest";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import TeacherRequest from "../Pages/Dashboard/Admin/TeacherRequest";
+import Users from "../Pages/Dashboard/Admin/Users";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <TeacherRequest />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "users",
+        element: (
+          <AdminRoute>
+            <Users/>
           </AdminRoute>
         ),
       },
