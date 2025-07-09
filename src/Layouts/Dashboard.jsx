@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdMenu } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router";
-import { FaArrowLeft } from "react-icons/fa";
+import "../App.css";
+import {
+  FaArrowLeft,
+  FaChalkboardTeacher,
+  FaClipboardList,
+  FaHome,
+  FaPlusSquare,
+  FaTable,
+  FaUserGraduate,
+  FaUserShield,
+} from "react-icons/fa";
 import Swal from "sweetalert2";
+import useUserRole from "../hooks/useUserRole";
 import useAuth from "../hooks/useAuth";
+import Logo from "../Components/Logo";
 
 const Dashboard = () => {
-  const { logOutUser } = useAuth();
+  const { logOut } = useAuth();
+  const { role, isLoading: roleLoading } = useUserRole();
   const handleLogout = () => {
-    logOutUser()
+    logOut()
       .then(() => {
         Swal.fire({
           position: "center",
@@ -26,6 +39,99 @@ const Dashboard = () => {
         });
       });
   };
+
+  const links = (
+    <>
+      <NavLink
+        to="/dashboard"
+        end
+        className="flex gap-3 py-2 items-center pl-4"
+      >
+        <FaHome />
+        Home
+      </NavLink>
+      {!roleLoading && role === "user" && (
+        <>
+          <NavLink
+            to="/dashboard/beATeacher"
+            className="flex gap-3 py-2 items-center pl-4"
+          >
+            <FaChalkboardTeacher />
+            Be a Teacher
+          </NavLink>
+        </>
+      )}
+
+      {!roleLoading && role === "teacher" && (
+        <>
+          <NavLink
+            to="/dashboard/addClass"
+            className="flex gap-3 py-2 items-center pl-4"
+          >
+            <FaPlusSquare />
+            Add Class
+          </NavLink>
+          <NavLink
+            to="/dashboard/addLiveClasses"
+            className="flex gap-3 py-2 items-center pl-4"
+          >
+            <FaPlusSquare />
+            Add Live Class
+          </NavLink>
+          <NavLink
+            to="/dashboard/myClasses"
+            className="flex gap-3 py-2 items-center pl-4"
+          >
+            <FaTable />
+            My Classes
+          </NavLink>
+          <NavLink
+            to="/dashboard/uploadTestPaper"
+            className="flex gap-3 py-2 items-center pl-4"
+          >
+            <FaTable />
+            Upload Test Paper
+          </NavLink>
+        </>
+      )}
+
+      {!roleLoading && role === "admin" && (
+        <>
+          <NavLink
+            to="/dashboard/teacherRequest"
+            className="flex gap-3 py-2 items-center pl-4"
+          >
+            <FaClipboardList />
+            Teacher Requests
+          </NavLink>
+          <NavLink
+            className="flex gap-3 py-2 items-center pl-4"
+            to="/dashboard/allTeachers"
+          >
+            <FaChalkboardTeacher />
+            All Teachers
+          </NavLink>
+          <NavLink
+            className="flex gap-3 py-2 items-center pl-4"
+            to="/dashboard/allStudents"
+          >
+            <FaUserGraduate />
+            All Students
+          </NavLink>
+          <NavLink
+            className="flex gap-3 py-2 items-center pl-4"
+            to="/dashboard/makeAdmin"
+          >
+            <FaUserShield />
+            Make Admin
+          </NavLink>
+        </>
+      )}
+    </>
+  );
+  useEffect(()=>{
+      document.title="ACS FS || Dashboard"
+    },[])
   return (
     <div className="drawer lg:drawer-open dark:bg-gray-900 dark:text-gray-200">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -43,36 +149,31 @@ const Dashboard = () => {
               <MdMenu size={25} />
             </label>
           </div>
-          <div className="mx-2 flex-1 px-2 lg:hidden">logo</div>
+          <div className="mx-2 flex-1 px-2 text-2xl font-bold">Dashboard</div>
         </div>
-        <div>
+        <div className="px-6 py-4 min-h-screen">
           <Outlet />
         </div>
       </div>
-      <div className="drawer-side">
+      <section className="drawer-side">
         <label
           htmlFor="my-drawer"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-0 dark:bg-gray-700 dark:text-gray-100">
-          <Link
-            className="flex items-center justify-center mb-5 bg-gray-200 gap-3 py-3 dark:bg-gray-600"
-            to="/"
-          >
-            logo
+        <ul className="menu bg-gray-100 min-h-full w-80 p-0 dark:bg-gray-700 dark:text-gray-100">
+          <Link to="/" className="bg-gray-300 dark:bg-gray-700 py-2 px-4">
+            <Logo />
           </Link>
-          <NavLink to="/dashboard">Home</NavLink>
-          <NavLink to="/dashboard/stats">Overview</NavLink>
-          <NavLink to="/dashboard/myTips">My Tips</NavLink>
+          {links}
           <button
             onClick={handleLogout}
-            className="btn fixed bottom-1 w-full  bg-[#44cf44] border-none"
+            className="btn fixed bottom-1 w-full  btn-primary text-black border-none"
           >
             <FaArrowLeft /> Logout
           </button>
         </ul>
-      </div>
+      </section>
     </div>
   );
 };

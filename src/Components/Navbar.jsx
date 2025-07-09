@@ -33,6 +33,12 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+      <li>
+        <NavLink to="/all-classes">All Classes</NavLink>
+      </li>
+      <li>
+        <NavLink to="/all-classes">Teach on EduNest</NavLink>
+      </li>
     </>
   );
   return (
@@ -71,6 +77,14 @@ const Navbar = () => {
             >
               <Theme />
               <li>{user.displayName}</li>
+
+              <li>
+                <Link to="/dashboard"
+                  className="btn btn-primary btn-outline"
+                >
+                  Dashboard
+                </Link>
+              </li>
               <li>
                 <button
                   onClick={handleLogOut}

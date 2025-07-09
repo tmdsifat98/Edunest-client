@@ -76,7 +76,7 @@ const Footer = () => {
               >
                 <FaFacebook
                   size={23}
-                  className="text-[#02ebc4] hover:text-blue-500 transition"
+                  className="text-blue-600 hover:text-blue-500 transition"
                 />
               </a>
               <a href="https://x.com/SifatTarafder98" target="_blank">
@@ -108,7 +108,7 @@ const Footer = () => {
                 type="text"
                 required
               />
-              <button className="button-common py-2 px-4 cursor-pointer">
+              <button className="btn btn-primary text-black rounded-l-none py-2 px-4 cursor-pointer">
                 <GrSend />
               </button>
             </form>
