@@ -157,7 +157,7 @@ const Dashboard = () => {
           </div>
           <div className="mx-2 flex-1 px-2 text-2xl font-bold">Dashboard</div>
         </div>
-        <div className="px-6 py-4 min-h-screen">
+        <div className="px-6 py-4 min-h-[calc(100vh-100px)]">
           <Outlet />
         </div>
       </div>

@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import TeacherRequest from "../Pages/Dashboard/Admin/TeacherRequest";
 import Users from "../Pages/Dashboard/Admin/Users";
+import MyProfile from "../Pages/Dashboard/Admin/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <Users/>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <AdminRoute>
+            <MyProfile/>
           </AdminRoute>
         ),
       },
