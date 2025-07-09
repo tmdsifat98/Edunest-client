@@ -16,10 +16,10 @@ const TeachOnEduNest = () => {
     reset,
     formState: { errors },
   } = useForm();
-   const [imageUrl, setImageUrl] = useState("");
-    const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const handleImageUpload = async (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -45,16 +45,19 @@ const TeachOnEduNest = () => {
     try {
       const teacherData = {
         ...data,
-        image: imageUrl,
+        image:
+          imageUrl ||
+          user?.photoURL ||
+          "https://i.ibb.co/Rk2y0f77/default.webp",
         createdAt: new Date().toISOString(),
         status: "pending",
       };
-console.log(teacherData);
+      console.log(teacherData);
       const res = await axiosSecure.post("/teachers", teacherData);
       if (res.data.insertedId) {
         Swal.fire("Success!", "Your request has been submitted.", "success");
         reset();
-        setImageUrl("")
+        setImageUrl("");
       }
     } catch (error) {
       console.error(error);
@@ -71,7 +74,7 @@ console.log(teacherData);
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
-       <div className="flex justify-center items-center gap-3">
+        <div className="flex justify-center items-center gap-3">
           <div className="relative w-16 h-16 tooltip" data-tip="Upload image">
             {loading ? (
               <div className="w-16 h-16 rounded-full border-4 border-dashed border-gray-400 animate-spin"></div>
@@ -89,9 +92,12 @@ console.log(teacherData);
               className="absolute inset-0 opacity-0 cursor-pointer"
             />
           </div>
-          <p className="text-2xl font-semibold flex items-center gap-2"> <BsArrowLeft size={20}/> Upload your image here</p>
+          <p className="text-2xl font-semibold flex items-center gap-2">
+            {" "}
+            <BsArrowLeft size={20} /> Upload your image here
+          </p>
         </div>
-         {/* Experience */}
+        {/* Experience */}
         <div>
           <label className="label">Experience</label>
           <select
@@ -104,15 +110,14 @@ console.log(teacherData);
             <option value="experienced">Experienced</option>
           </select>
           {errors.experience && (
-            <span className="text-red-500">
-              {errors.experience.message}
-            </span>
+            <span className="text-red-500">{errors.experience.message}</span>
           )}
         </div>
         {/* Name */}
         <div>
           <label className="label">Name</label>
-          <input type="text"
+          <input
+            type="text"
             {...register("name", { required: "Name is required" })}
             className="input input-bordered w-full dark:bg-gray-700"
             placeholder="Enter your name"
@@ -122,7 +127,7 @@ console.log(teacherData);
           )}
         </div>
 
-          {/* Title */}
+        {/* Title */}
         <div>
           <label className="label">Title</label>
           <input
@@ -161,13 +166,14 @@ console.log(teacherData);
             <option value="data-analysis">Data Analysis</option>
           </select>
           {errors.category && (
-            <span className="text-red-500">
-              {errors.category.message}
-            </span>
+            <span className="text-red-500">{errors.category.message}</span>
           )}
         </div>
         <div className="md:col-span-2">
-          <button type="submit" className="btn btn-primary w-full mt-3 text-black">
+          <button
+            type="submit"
+            className="btn btn-primary w-full mt-3 text-black"
+          >
             Submit For Review
           </button>
         </div>

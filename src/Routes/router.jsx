@@ -7,17 +7,37 @@ import Login from "../Pages/Auth/Login";
 import SignUp from "../Pages/Auth/SignUp";
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import TeachOnEduNest from "../Pages/RoutingPage/TeachOnEduNest";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import TeacherRequest from "../Pages/Dashboard/Admin/TeacherRequest";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    children: [{ index: true, Component: Home },
-      {path:"/teachOnEduNest",Component:TeachOnEduNest}
+    children: [
+      { index: true, Component: Home },
+      { path: "/teachOnEduNest", Component: TeachOnEduNest },
     ],
   },
-  { path: "/dashboard", Component: Dashboard, children: [
-    {index: true, Component:DashboardHome}]
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      { index: true, Component: DashboardHome },
+      {
+        path: "teacherRequest",
+        element: (
+          <AdminRoute>
+            <TeacherRequest />
+          </AdminRoute>
+        ),
+      },
+    ],
   },
   {
     path: "/auth",

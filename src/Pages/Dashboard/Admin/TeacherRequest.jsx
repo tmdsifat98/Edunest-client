@@ -1,9 +1,9 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../../../components/LoadingSpinner";
-import NoDataFound from "../../../../components/NoDataFound";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import { FaCheck, FaTimes } from "react-icons/fa";
 
 const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();
