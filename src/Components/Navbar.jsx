@@ -37,7 +37,7 @@ const Navbar = () => {
         <NavLink to="/all-classes">All Classes</NavLink>
       </li>
       <li>
-        <NavLink to="/all-classes">Teach on EduNest</NavLink>
+        <NavLink to="/teachOnEduNest">Teach on EduNest</NavLink>
       </li>
     </>
   );

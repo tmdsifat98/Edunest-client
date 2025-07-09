@@ -13,13 +13,14 @@ import {
   FaUserShield,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useUserRole from "../hooks/useUserRole";
 import useAuth from "../hooks/useAuth";
 import Logo from "../Components/Logo";
+import useUserRole from "../hooks/useUserRole";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
   const { role, isLoading: roleLoading } = useUserRole();
+
   const handleLogout = () => {
     logOut()
       .then(() => {
@@ -45,7 +46,7 @@ const Dashboard = () => {
       <NavLink
         to="/dashboard"
         end
-        className="flex gap-3 py-2 items-center pl-4"
+        className="flex gap-3 py-2 items-center pl-4 text-md"
       >
         <FaHome />
         Home
@@ -62,7 +63,7 @@ const Dashboard = () => {
         </>
       )}
 
-      {!roleLoading && role === "teacher" && (
+      {/* {!roleLoading && role === "teacher" && (
         <>
           <NavLink
             to="/dashboard/addClass"
@@ -93,45 +94,50 @@ const Dashboard = () => {
             Upload Test Paper
           </NavLink>
         </>
-      )}
+      )} */}
 
       {!roleLoading && role === "admin" && (
         <>
-          <NavLink
-            to="/dashboard/teacherRequest"
-            className="flex gap-3 py-2 items-center pl-4"
-          >
-            <FaClipboardList />
-            Teacher Requests
-          </NavLink>
-          <NavLink
-            className="flex gap-3 py-2 items-center pl-4"
-            to="/dashboard/allTeachers"
-          >
-            <FaChalkboardTeacher />
-            All Teachers
-          </NavLink>
-          <NavLink
-            className="flex gap-3 py-2 items-center pl-4"
-            to="/dashboard/allStudents"
-          >
-            <FaUserGraduate />
-            All Students
-          </NavLink>
-          <NavLink
-            className="flex gap-3 py-2 items-center pl-4"
-            to="/dashboard/makeAdmin"
-          >
-            <FaUserShield />
-            Make Admin
-          </NavLink>
+          <div className="flex flex-col gap-2">
+            <NavLink
+              to="/dashboard/teacherRequest"
+              className="flex items-center gap-2 px-4 py-2"
+            >
+              <FaClipboardList className="text-lg" />
+              <span>Teacher Request</span>
+            </NavLink>
+
+            <NavLink
+              to="/dashboard/allUsers"
+              className="flex items-center gap-2 px-4 py-2"
+            >
+              <FaChalkboardTeacher className="text-lg" />
+              <span>All Users</span>
+            </NavLink>
+
+            <NavLink
+              to="/dashboard/allClasses"
+              className="flex items-center gap-2 px-4 py-2"
+            >
+              <FaUserGraduate className="text-lg" />
+              <span>All Classes</span>
+            </NavLink>
+
+            <NavLink
+              to="/dashboard/profile"
+              className="flex items-center gap-2 px-4 py-2"
+            >
+              <FaUserShield className="text-lg" />
+              <span>Profile</span>
+            </NavLink>
+          </div>
         </>
       )}
     </>
   );
-  useEffect(()=>{
-      document.title="ACS FS || Dashboard"
-    },[])
+  useEffect(() => {
+    document.title = "EduNest || Dashboard";
+  }, []);
   return (
     <div className="drawer lg:drawer-open dark:bg-gray-900 dark:text-gray-200">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -162,7 +168,7 @@ const Dashboard = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-gray-100 min-h-full w-80 p-0 dark:bg-gray-700 dark:text-gray-100">
-          <Link to="/" className="bg-gray-300 dark:bg-gray-700 py-2 px-4">
+          <Link to="/" className="bg-gray-300 dark:bg-gray-700 py-3 px-12">
             <Logo />
           </Link>
           {links}
