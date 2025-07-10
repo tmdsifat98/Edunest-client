@@ -16,6 +16,7 @@ import TeacherRoute from "./TeacherRoute";
 import AddClass from "../Pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../Pages/Dashboard/Teacher/MyClasses";
 import AllClasses from "../Pages/Dashboard/Admin/AllClasses";
+import ClassProgressAndAssignment from "../Pages/Dashboard/Teacher/ClassProgressAndAssignment";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,14 @@ const router = createBrowserRouter([
         element: (
           <TeacherRoute>
             <MyClasses />
+          </TeacherRoute>
+        ),
+      },
+      {
+        path: "myClasses/:classId",
+        element: (
+          <TeacherRoute>
+            <ClassProgressAndAssignment/>
           </TeacherRoute>
         ),
       },

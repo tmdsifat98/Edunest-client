@@ -97,7 +97,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Link to="/auth/login">
-            <button className="btn hover:bg-primary">Login</button>
+            <button className="btn bg-primary">Login</button>
           </Link>
         )}
       </div>

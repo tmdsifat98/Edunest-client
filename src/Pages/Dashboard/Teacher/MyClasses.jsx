@@ -124,7 +124,7 @@ const MyClasses = () => {
                   className="btn btn-sm btn-outline btn-secondary"
                   disabled={cls.status === "pending"}
                 >
-                  <Link to={`/my-class/${cls._id}`}>See Details</Link>
+                  <Link to={`/dashboard/myClasses/${cls._id}`}>See Details</Link>
                 </button>
               </div>
             </div>
