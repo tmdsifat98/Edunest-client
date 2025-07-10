@@ -18,6 +18,9 @@ import MyClasses from "../Pages/Dashboard/Teacher/MyClasses";
 import AllClasses from "../Pages/Dashboard/Admin/AllClasses";
 import ClassProgressAndAssignment from "../Pages/Dashboard/Teacher/ClassProgressAndAssignment";
 import AllClassesPage from "../Pages/RoutingPage/AllClassesPage";
+import ClassDetails from "../Pages/RoutingPage/ClassDetails";
+import Payment from "../Pages/Payment/Payment";
+import MyEnrolls from "../Pages/Dashboard/Student/MyEnrolls";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +29,9 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "/all-classes-page", Component: AllClassesPage },
+      { path: "/class/:id", Component: ClassDetails },
       { path: "/teachOnEduNest", Component: TeachOnEduNest },
+      { path: "/payment/:classId", Component: Payment },
     ],
   },
   {
@@ -93,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <MyProfile />,
+      },
+      {
+        path: "my-enroll",
+        element: <MyEnrolls/>
       },
     ],
   },

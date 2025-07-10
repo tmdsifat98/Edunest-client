@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import { Link } from "react-router";
 
 const AllClassesPage = () => {
   const axiosSecure = useAxiosSecure();
@@ -41,9 +42,11 @@ const AllClassesPage = () => {
                   Enrolled: {cls.enrolledCount || 0}
                 </span>
               </div>
-              <button className="btn btn-primary btn-sm w-full mt-2">
-                Enroll
-              </button>
+              <Link to={`/class/${cls._id}`}>
+                <button className="btn btn-primary btn-sm w-full mt-2">
+                  Enroll
+                </button>
+              </Link>
             </div>
           </div>
         ))}

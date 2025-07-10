@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
-const CheckoutForm = ({ amount, parcelId }) => {
+const CheckoutForm = ({ amount, classId, email }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ const CheckoutForm = ({ amount, parcelId }) => {
     //make payment
     const response = await axiosSecure.post("/create-payment-intent", {
       amount,
-      parcelId,
+      classId,
     });
     const result = stripe.confirmCardPayment(response.data.clientSecret, {
       payment_method: {
@@ -71,8 +71,8 @@ const CheckoutForm = ({ amount, parcelId }) => {
           setProcessing(false);
           // Update payment status in the database
           axiosSecure
-            .patch(`/parcel/${parcelId}`, {
-              payment_status: "paid",
+            .patch(`/classes/enroll/${classId}`, {
+              email: email,
             })
             .then((res) => {
               if (res.data.modifiedCount > 0) {
@@ -83,7 +83,7 @@ const CheckoutForm = ({ amount, parcelId }) => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                navigate("/dashboard/myParcels");
+                navigate("/dashboard/my-enroll");
               }
             })
             .catch((error) => {
@@ -122,7 +122,7 @@ const CheckoutForm = ({ amount, parcelId }) => {
       <button
         type="submit"
         disabled={!stripe || proccessing}
-        className="btn btn-primary text-black px-5 w-fit mx-auto"
+        className="btn btn-primary text-black px-5 w-fit mx-auto mt-4"
       >
         {proccessing ? "Processing..." : `Pay $${amount}`}
       </button>
