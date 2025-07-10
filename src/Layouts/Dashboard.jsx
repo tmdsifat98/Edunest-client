@@ -63,7 +63,7 @@ const Dashboard = () => {
         </>
       )}
 
-      {/* {!roleLoading && role === "teacher" && (
+      {!roleLoading && role === "teacher" && (
         <>
           <NavLink
             to="/dashboard/addClass"
@@ -73,66 +73,50 @@ const Dashboard = () => {
             Add Class
           </NavLink>
           <NavLink
-            to="/dashboard/addLiveClasses"
-            className="flex gap-3 py-2 items-center pl-4"
-          >
-            <FaPlusSquare />
-            Add Live Class
-          </NavLink>
-          <NavLink
-            to="/dashboard/myClasses"
+            to="/dashboard/myClass"
             className="flex gap-3 py-2 items-center pl-4"
           >
             <FaTable />
-            My Classes
-          </NavLink>
-          <NavLink
-            to="/dashboard/uploadTestPaper"
-            className="flex gap-3 py-2 items-center pl-4"
-          >
-            <FaTable />
-            Upload Test Paper
+            My Class
           </NavLink>
         </>
-      )} */}
+      )}
 
       {!roleLoading && role === "admin" && (
         <>
-          <div className="flex flex-col gap-2">
-            <NavLink
-              to="/dashboard/teacherRequest"
-              className="flex items-center gap-2 px-4 py-2"
-            >
-              <FaClipboardList className="text-lg" />
-              <span>Teacher Request</span>
-            </NavLink>
+          <NavLink
+            to="/dashboard/teacherRequest"
+            className="flex items-center gap-2 px-4 py-2"
+          >
+            <FaClipboardList className="text-lg" />
+            <span>Teacher Request</span>
+          </NavLink>
 
-            <NavLink
-              to="/dashboard/users"
-              className="flex items-center gap-2 px-4 py-2"
-            >
-              <FaChalkboardTeacher className="text-lg" />
-              <span>All Users</span>
-            </NavLink>
+          <NavLink
+            to="/dashboard/users"
+            className="flex items-center gap-2 px-4 py-2"
+          >
+            <FaChalkboardTeacher className="text-lg" />
+            <span>All Users</span>
+          </NavLink>
 
-            <NavLink
-              to="/dashboard/allClasses"
-              className="flex items-center gap-2 px-4 py-2"
-            >
-              <FaUserGraduate className="text-lg" />
-              <span>All Classes</span>
-            </NavLink>
-
-            <NavLink
-              to="/dashboard/profile"
-              className="flex items-center gap-2 px-4 py-2"
-            >
-              <FaUserShield className="text-lg" />
-              <span>Profile</span>
-            </NavLink>
-          </div>
+          <NavLink
+            to="/dashboard/allClasses"
+            className="flex items-center gap-2 px-4 py-2"
+          >
+            <FaUserGraduate className="text-lg" />
+            <span>All Classes</span>
+          </NavLink>
         </>
       )}
+
+      <NavLink
+        to="/dashboard/profile"
+        className="flex items-center gap-2 px-4 py-2"
+      >
+        <FaUserShield className="text-lg" />
+        <span>Profile</span>
+      </NavLink>
     </>
   );
   useEffect(() => {

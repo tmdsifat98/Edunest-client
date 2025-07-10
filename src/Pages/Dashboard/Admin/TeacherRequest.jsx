@@ -129,8 +129,8 @@ const TeacherRequest = () => {
                 <div className="flex gap-2 items-center justify-center">
                   <button
                     onClick={() => approveMutation.mutate(teacher)}
-                    disabled={teacher.status === "rejected"}
-                    className="btn btn-xs btn-success flex items-center gap-1"
+                    disabled={teacher.status === "rejected" ||teacher.status === "approved"}
+                    className="btn btn-xs btn-success flex items-center gap-1 cursor-not-allowed"
                   >
                     <FaCheck /> Approve
                   </button>
