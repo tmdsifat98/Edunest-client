@@ -19,7 +19,7 @@ const AllClassesPage = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className=" w-9/12 mx-auto">
+    <div className="md:w-9/12 mx-auto">
       <h1 className="text-5xl font-semibold text-center my-7">All Classes</h1>
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {classes.map((cls) => (
@@ -35,7 +35,7 @@ const AllClassesPage = () => {
             <div className="p-4 space-y-2">
               <h2 className="text-xl font-bold text-primary">{cls.title}</h2>
               <p className="text-sm text-gray-500">By: {cls.name}</p>
-              <p className="text-sm">{cls.description.slice(0, 80)}...</p>
+              <p className="text-sm line-clamp-3 h-16">{cls.description}</p>
               <div className="flex justify-between items-center text-sm font-medium">
                 <span className="text-success">৳ {cls.price}</span>
                 <span className="text-info">

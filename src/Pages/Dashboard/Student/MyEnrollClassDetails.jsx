@@ -1,0 +1,101 @@
+import React, { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { useParams } from "react-router";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
+const MyEnrollClassDetails = () => {
+  const { id } = useParams(); 
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+  const [submissions, setSubmissions] = useState({});
+
+  const { data: assignments = [], isLoading } = useQuery({
+    queryKey: ["classAssignments", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/assignments/${id}`);
+      return res.data;
+    },
+  });
+
+  const submitAssignment = useMutation({
+    mutationFn: async ({ assignmentId, document }) => {
+      return await axiosSecure.post("/assignment-submissions", {
+        assignmentId,
+        classId: id,
+        document,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["classAssignments", id]);
+      Swal.fire("Success!", "Assignment submitted successfully", "success");
+      setSubmissions({});
+    },
+    onError: () => {
+      Swal.fire("Error!", "You have already submitted the assignment", "error");
+    },
+  });
+
+  const handleChange = (assignmentId, value) => {
+    setSubmissions((prev) => ({ ...prev, [assignmentId]: value }));
+  };
+
+  const handleSubmit = (assignmentId) => {
+    if (!submissions[assignmentId]) return;
+    submitAssignment.mutate({ assignmentId, document: submissions[assignmentId] });
+  };
+
+  return (
+    <div className="p-4">
+      <h2 className="text-2xl font-bold text-primary mb-4">Assignments</h2>
+      {isLoading ? (
+        <p>Loading assignments...</p>
+      ) : assignments.length === 0 ? (
+        <p>No assignments available.</p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="table w-full text-center">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Submission</th>
+              </tr>
+            </thead>
+            <tbody>
+              {assignments.map((assignment, index) => (
+                <tr key={assignment._id}>
+                  <td>{index + 1}</td>
+                  <td>{assignment.title}</td>
+                  <td>{assignment.description}</td>
+                  <td>{new Date(assignment.deadline).toLocaleDateString()}</td>
+                  <td className="flex flex-col md:flex-row gap-2 items-center justify-center">
+                    <input
+                      type="text"
+                      placeholder="Paste document link"
+                      className="input input-bordered input-sm"
+                      value={submissions[assignment._id] || ""}
+                      onChange={(e) =>
+                        handleChange(assignment._id, e.target.value)
+                      }
+                    />
+                    <button
+                      onClick={() => handleSubmit(assignment._id)}
+                      className="btn btn-sm btn-primary"
+                    >
+                      Submit
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MyEnrollClassDetails;

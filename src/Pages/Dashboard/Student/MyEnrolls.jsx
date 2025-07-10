@@ -36,7 +36,7 @@ console.log(classes);
             <p className="text-gray-600 dark:text-gray-300">
               Instructor: <span className="font-medium">{cls.name}</span>
             </p>
-            <Link to={`/class/${cls._id}`}>
+            <Link to={`/dashboard/my-enroll/${cls._id}`}>
               <button className="btn btn-sm btn-success mt-2">Continue</button>
             </Link>
           </div>

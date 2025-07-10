@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../../components/LoadingSpinner";
 import useDebounce from "../../../hooks/useDebounce";
 import NoDataFound from "../../Extra/NoDataFound";
 import { useLoaderData } from "react-router";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();

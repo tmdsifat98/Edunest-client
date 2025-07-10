@@ -21,6 +21,8 @@ import AllClassesPage from "../Pages/RoutingPage/AllClassesPage";
 import ClassDetails from "../Pages/RoutingPage/ClassDetails";
 import Payment from "../Pages/Payment/Payment";
 import MyEnrolls from "../Pages/Dashboard/Student/MyEnrolls";
+import MyEnrollClassDetails from "../Pages/Dashboard/Student/MyEnrollClassDetails";
+import ErrorPage from "../Pages/Error/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +105,10 @@ const router = createBrowserRouter([
         path: "my-enroll",
         element: <MyEnrolls/>
       },
+      {
+        path: "my-enroll/:id",
+        element: <MyEnrollClassDetails/>
+      },
     ],
   },
   {
@@ -119,6 +125,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {path:"*",Component:ErrorPage}
 ]);
 
 export default router;

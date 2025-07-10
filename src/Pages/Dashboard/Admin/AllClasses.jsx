@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
