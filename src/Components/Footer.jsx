@@ -8,17 +8,6 @@ import Swal from "sweetalert2";
 import Logo from "./Logo";
 
 const Footer = () => {
-  const handleText = (e) => {
-    e.preventDefault();
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Message successfully sent!",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    e.target.reset();
-  };
   return (
     <footer className="bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-300 py-8 mt-12">
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-x-36 items-start text-start lg:text-center">
@@ -95,20 +84,6 @@ const Footer = () => {
               />
             </a>
           </div>
-          <form
-            onSubmit={handleText}
-            className="border w-44 border-gray-400 mt-2 rounded pl-2 flex items-center"
-          >
-            <input
-              placeholder="Write message"
-              className="bg-transparent text-sm w-11/12 border-none outline-0"
-              type="text"
-              required
-            />
-            <button className="btn btn-primary text-black rounded-l-none py-2 px-4 cursor-pointer">
-              <GrSend />
-            </button>
-          </form>
         </div>
       </div>
       <img

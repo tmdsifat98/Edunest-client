@@ -22,7 +22,7 @@ const TeacherFeedback = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <section className="my-16 px-4 lg:px-0 w-9/12 mx-auto">
+    <section className="my-16 px-4 lg:px-0 w-11/12 lg:w-9/12 mx-auto">
       <h2 className="text-3xl font-bold text-center text-primary mb-8">
         What Our Students Say
       </h2>
@@ -71,7 +71,7 @@ const TeacherFeedback = () => {
                 />{" "}
                 <p className="mt-1">({fb.rating})</p>
               </div>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 bg-gray-200 dark:bg-gray-600 p-2 rounded-lg">
+                <p className="text-gray-600 line-clamp-2 h-15 dark:text-gray-300 mt-2 bg-gray-200 dark:bg-gray-600 p-2 rounded-lg">
                   {fb.description}
                 </p>
               </div>

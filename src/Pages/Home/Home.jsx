@@ -4,6 +4,7 @@ import Partners from "./Sections/Partners";
 import PopularClasses from "./Sections/PopularClasses";
 import TeacherFeedback from "./Sections/TeacherFeedback";
 import WebStats from "./Sections/WebStats";
+import TeacherInspire from "./Sections/TeacherInspire";
 
 const Home = () => {
   return (
@@ -18,7 +19,10 @@ const Home = () => {
         <PopularClasses />
       </section>
       <section>
-        <WebStats/>
+        <TeacherInspire />
+      </section>
+      <section>
+        <WebStats />
       </section>
       <section>
         <TeacherFeedback />
