@@ -3,9 +3,11 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useParams } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const ClassProgressAndAssignment = () => {
   const { classId } = useParams();
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +31,7 @@ const ClassProgressAndAssignment = () => {
       const res = await axiosSecure.post("/assignments", {
         ...formData,
         classId,
+        teacherEmail: user?.email,
       });
       return res.data;
     },

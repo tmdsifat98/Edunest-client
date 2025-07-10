@@ -1,0 +1,28 @@
+.banner-bg-1 {
+  background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
+    url("./assets/computer.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.banner-bg-2 {
+  background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
+    url("./assets/graphics.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.banner-bg-3 {
+  background: linear-gradient(0deg, rgb(15, 15, 15, 0.6), rgb(15, 15, 15, 0.7)),
+    url("./assets/videdit.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.banner-bg-4 {
+  background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
+    url("./assets/webdev.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

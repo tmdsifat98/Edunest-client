@@ -3,12 +3,16 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useParams } from "react-router";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
+import NoDataFound from "../../Extra/NoDataFound";
+import TeacherEvaluation from "./TeacherEvoluation";
 
 const MyEnrollClassDetails = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [submissions, setSubmissions] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   const { data: assignments = [], isLoading } = useQuery({
     queryKey: ["classAssignments", id],
@@ -35,6 +39,7 @@ const MyEnrollClassDetails = () => {
       Swal.fire("Error!", "You have already submitted the assignment", "error");
     },
   });
+  const teacherEmail = assignments?.[0]?.teacherEmail;
 
   const handleChange = (assignmentId, value) => {
     setSubmissions((prev) => ({ ...prev, [assignmentId]: value }));
@@ -42,19 +47,28 @@ const MyEnrollClassDetails = () => {
 
   const handleSubmit = (assignmentId) => {
     if (!submissions[assignmentId]) return;
-    submitAssignment.mutate({ assignmentId, document: submissions[assignmentId] });
+    submitAssignment.mutate({
+      assignmentId,
+      document: submissions[assignmentId],
+    });
   };
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold text-primary mb-4">Assignments</h2>
+      <div
+        onClick={() => setShowModal(true)}
+        className="flex justify-end lg:mr-12 mb-5"
+      >
+        <button className="btn btn-primary">Teaching Evaluation Report</button>
+      </div>
+      <h2 className="text-4xl font-bold text-primary mb-4">Assignments</h2>
       {isLoading ? (
-        <p>Loading assignments...</p>
+        <LoadingSpinner />
       ) : assignments.length === 0 ? (
-        <p>No assignments available.</p>
+        <NoDataFound message="No assignment found at this moment" />
       ) : (
         <div className="overflow-x-auto">
-          <table className="table w-full text-center">
+          <table className="table w-full text-center table-zebra">
             <thead>
               <tr>
                 <th>#</th>
@@ -93,6 +107,9 @@ const MyEnrollClassDetails = () => {
             </tbody>
           </table>
         </div>
+      )}
+      {showModal && (
+        <TeacherEvaluation classId={id} teacherEmail={teacherEmail} setShowModal={setShowModal} />
       )}
     </div>
   );
