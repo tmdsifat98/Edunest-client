@@ -28,7 +28,7 @@ const Footer = () => {
               <Logo />
             </Link>
             <p className="w-2/3">
-              EduNest is your all-in-one education management platform.
+              EduNest is your all-in-one education platform.
             </p>
           </div>
 

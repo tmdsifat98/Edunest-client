@@ -43,15 +43,16 @@ const router = createBrowserRouter([
         path: "users",
         element: (
           <AdminRoute>
-            <Users/>
+            <Users />
           </AdminRoute>
         ),
+        loader: () => fetch(`${import.meta.env.VITE_serverUrl}/total-users/count`),
       },
       {
         path: "profile",
         element: (
           <AdminRoute>
-            <MyProfile/>
+            <MyProfile />
           </AdminRoute>
         ),
       },

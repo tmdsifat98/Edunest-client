@@ -5,11 +5,23 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import useDebounce from "../../../hooks/useDebounce";
 import NoDataFound from "../../Extra/NoDataFound";
+import { useLoaderData } from "react-router";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();
   const [searchTerm, setSearchTerm] = useState("");
+  const userCount = useLoaderData();
+  const [currentPage, setCurrentPage] = useState(1);
   const debouncedSearch = useDebounce(searchTerm, 500);
+
+  const usersPerPage =  10
+
+   let pages = 0;
+  //paginate calculation
+  if (userCount > usersPerPage) {
+    pages = userCount / usersPerPage;
+  }
+  const totalPages = Math.ceil(pages);
 
   // ✅ Fetch all users initially
   const {
@@ -17,9 +29,9 @@ const Users = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["allUsers"],
+    queryKey: ["allUsers",currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get(`/users?page=${currentPage}&limit=${usersPerPage}`);
       return res.data;
     },
     staleTime: 1000 * 60 * 5,
@@ -108,7 +120,9 @@ const Users = () => {
                       disabled={user.role === "admin"}
                       onClick={() => makeAdminMutation.mutate(user._id)}
                       className={` ${
-                        user.role === "admin" ? "cursor-not-allowed bg-gray-300" : "cursor-pointer bg-primary"
+                        user.role === "admin"
+                          ? "cursor-not-allowed bg-gray-300"
+                          : "cursor-pointer bg-primary"
                       } px-4 py-2 rounded text-black`}
                     >
                       {makeAdminMutation.isLoading
@@ -124,6 +138,35 @@ const Users = () => {
           </table>
         </div>
       )}
+      <div className="mt-6 flex justify-center gap-2">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="btn btn-sm"
+        >
+          Prev
+        </button>
+        {[...Array(totalPages)].map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentPage(i + 1)}
+            className={`btn btn-sm ${
+              currentPage === i + 1 ? "btn-primary" : "btn-ghost"
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+          className="btn btn-sm"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
