@@ -15,6 +15,7 @@ import MyProfile from "../Pages/Dashboard/Admin/MyProfile";
 import TeacherRoute from "./TeacherRoute";
 import AddClass from "../Pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../Pages/Dashboard/Teacher/MyClasses";
+import AllClasses from "../Pages/Dashboard/Admin/AllClasses";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_serverUrl}/total-users/count`),
       },
       {
+        path: "allClasses",
+        element: (
+          <AdminRoute>
+            <AllClasses/>
+          </AdminRoute>
+        ),
+      },
+      {
         path: "addClass",
         element: (
           <TeacherRoute>
@@ -63,7 +72,7 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_serverUrl}/total-users/count`),
       },
       {
-        path: "myClass",
+        path: "myClasses",
         element: (
           <TeacherRoute>
             <MyClasses />

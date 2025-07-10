@@ -73,11 +73,11 @@ const Dashboard = () => {
             Add Class
           </NavLink>
           <NavLink
-            to="/dashboard/myClass"
+            to="/dashboard/myClasses"
             className="flex gap-3 py-2 items-center pl-4"
           >
             <FaTable />
-            My Class
+            My Classes
           </NavLink>
         </>
       )}

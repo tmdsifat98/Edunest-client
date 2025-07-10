@@ -1,0 +1,114 @@
+import React from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+
+const AllClasses = () => {
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+
+  // ✅ Fetch all pending or approved classes
+  const { data: classes = [], isLoading } = useQuery({
+    queryKey: ["adminClasses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/classes/admin");
+      return res.data;
+    },
+  });
+
+  // ✅ Approve class
+  const approveMutation = useMutation({
+    mutationFn: async (id) => {
+      await axiosSecure.patch(`/classes/status/${id}`, { status: "approved" });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["adminClasses"]);
+      Swal.fire("Approved", "Class has been approved", "success");
+    },
+  });
+
+  // ✅ Reject class
+  const rejectMutation = useMutation({
+    mutationFn: async (id) => {
+      await axiosSecure.patch(`/classes/status/${id}`, { status: "rejected" });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["adminClasses"]);
+      Swal.fire("Rejected", "Class has been rejected", "info");
+    },
+  });
+
+  if (isLoading) return <LoadingSpinner />;
+
+  return (
+    <div className="overflow-x-auto">
+      <h2 className="text-4xl font-bold my-6 text-center text-primary">All Classes</h2>
+      <table className="table table-zebra w-full text-center">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Email</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {classes.map((cls, index) => (
+            <tr key={cls._id}>
+              <td>{index + 1}</td>
+              <td>
+                <div className="flex items-center justify-center">
+                    <img
+                  src={cls.image}
+                  alt="class"
+                  className="w-16 h-12 object-cover rounded"
+                />
+                </div>
+              </td>
+              <td>{cls.title}</td>
+              <td>{cls.email}</td>
+              <td>{cls.description.slice(0, 50)}...</td>
+              <td>
+                <span
+                  className={`text-sm px-2 py-1 rounded-full ${
+                    cls.status === "approved"
+                      ? "bg-green-200 text-green-800"
+                      : cls.status === "rejected"
+                      ? "bg-red-200 text-red-600"
+                      : "bg-yellow-200 text-yellow-800"
+                  }`}
+                >
+                  {cls.status}
+                </span>
+              </td>
+              <td>
+                <div className="flex items-center justify-center gap-2">
+                  <button
+                    disabled={cls.status !== "pending"}
+                    onClick={() => approveMutation.mutate(cls._id)}
+                    className="btn btn-sm btn-primary"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    disabled={cls.status !== "pending"}
+                    onClick={() => rejectMutation.mutate(cls._id)}
+                    className="btn btn-sm btn-secondary"
+                  >
+                    Reject
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default AllClasses;

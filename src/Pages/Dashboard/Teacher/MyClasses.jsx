@@ -5,13 +5,18 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import { Link } from "react-router";
 
 const MyClasses = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [showModal, setShowModal] = useState(false);
 
-  const { data: classes = [], isLoading, refetch } = useQuery({
+  const {
+    data: classes = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["myClasses", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/classes?email=${user?.email}`);
@@ -19,11 +24,7 @@ const MyClasses = () => {
     },
   });
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const updateMutation = useMutation({
     mutationFn: async (updated) => {
@@ -88,18 +89,43 @@ const MyClasses = () => {
         {classes.map((cls) => (
           <div key={cls._id} className="card bg-base-100 shadow-lg border">
             <figure>
-              <img src={cls.image} alt="Class" className="h-48 w-full object-cover" />
+              <img
+                src={cls.image}
+                alt="Class"
+                className="h-48 w-full object-cover"
+              />
             </figure>
             <div className="card-body">
               <h2 className="card-title">{cls.title}</h2>
-              <p><b>Price:</b> ${cls.price}</p>
-              <p><b>Status:</b> {cls.status}</p>
-              <p className="text-sm text-gray-600">{cls.description}</p>
-              <p className="text-xs text-gray-400">By: {cls.name} | {cls.email}</p>
+              <p>
+                <b>Price:</b> ${cls.price}
+              </p>
+              <p>
+                <b>Status:</b> {cls.status}
+              </p>
+              <p className="text-sm text-gray-600 line-clamp-3">{cls.description}</p>
+              <p className="text-xs text-gray-400">
+                By: {cls.name} | {cls.email}
+              </p>
               <div className="flex gap-2 mt-3">
-                <button onClick={() => openModal(cls)} className="btn text-black btn-sm btn-primary">Update</button>
-                <button onClick={() => handleDelete(cls._id)} className="btn btn-sm bg-rose-600">Delete</button>
-                <button className="btn btn-sm btn-outline">See Details</button>
+                <button
+                  onClick={() => openModal(cls)}
+                  className="btn text-black btn-sm btn-primary"
+                >
+                  Update
+                </button>
+                <button
+                  onClick={() => handleDelete(cls._id)}
+                  className="btn btn-sm bg-rose-400"
+                >
+                  Delete
+                </button>
+                <button
+                  className="btn btn-sm btn-outline btn-secondary"
+                  disabled={cls.status === "pending"}
+                >
+                  <Link to={`/my-class/${cls._id}`}>See Details</Link>
+                </button>
               </div>
             </div>
           </div>
@@ -110,7 +136,9 @@ const MyClasses = () => {
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg w-full max-w-md relative">
-            <h3 className="text-xl font-bold mb-4 text-primary">Update Class</h3>
+            <h3 className="text-xl font-bold mb-4 text-primary">
+              Update Class
+            </h3>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
               <div>
                 <label className="label">Title</label>
@@ -142,8 +170,16 @@ const MyClasses = () => {
                 />
               </div>
               <div className="flex justify-end gap-2 mt-4">
-                <button type="submit" className="btn btn-success btn-sm">Save</button>
-                <button onClick={closeModal} type="button" className="btn btn-ghost btn-sm">Cancel</button>
+                <button type="submit" className="btn btn-success btn-sm">
+                  Save
+                </button>
+                <button
+                  onClick={closeModal}
+                  type="button"
+                  className="btn btn-ghost btn-sm"
+                >
+                  Cancel
+                </button>
               </div>
             </form>
           </div>
