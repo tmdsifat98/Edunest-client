@@ -25,7 +25,8 @@ const TeacherEvaluation = ({ setShowModal, teacherEmail, classId }) => {
         rating,
         teacherEmail,
         classId,
-        givenBy: user?.email,
+        givenBy: user?.name,
+        image: user?.photoURL,
       };
 
       await axiosSecure.post("/evaluation", payload);
@@ -73,7 +74,10 @@ const TeacherEvaluation = ({ setShowModal, teacherEmail, classId }) => {
           >
             Cancel
           </button>
-          <button className="btn btn-primary text-black" onClick={handleTERSubmit}>
+          <button
+            className="btn btn-primary text-black"
+            onClick={handleTERSubmit}
+          >
             Send
           </button>
         </div>
