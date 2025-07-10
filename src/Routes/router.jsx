@@ -17,6 +17,7 @@ import AddClass from "../Pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../Pages/Dashboard/Teacher/MyClasses";
 import AllClasses from "../Pages/Dashboard/Admin/AllClasses";
 import ClassProgressAndAssignment from "../Pages/Dashboard/Teacher/ClassProgressAndAssignment";
+import AllClassesPage from "../Pages/RoutingPage/AllClassesPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
     Component: Root,
     children: [
       { index: true, Component: Home },
+      { path: "/all-classes-page", Component: AllClassesPage },
       { path: "/teachOnEduNest", Component: TeachOnEduNest },
     ],
   },
@@ -58,7 +60,7 @@ const router = createBrowserRouter([
         path: "allClasses",
         element: (
           <AdminRoute>
-            <AllClasses/>
+            <AllClasses />
           </AdminRoute>
         ),
       },
@@ -84,7 +86,7 @@ const router = createBrowserRouter([
         path: "myClasses/:classId",
         element: (
           <TeacherRoute>
-            <ClassProgressAndAssignment/>
+            <ClassProgressAndAssignment />
           </TeacherRoute>
         ),
       },
