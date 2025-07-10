@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "./Sections/Banner";
 import Partners from "./Sections/Partners";
+import PopularClasses from "./Sections/PopularClasses";
 
 const Home = () => {
   return (
@@ -10,6 +11,9 @@ const Home = () => {
       </section>
       <section>
         <Partners />
+      </section>
+      <section>
+        <PopularClasses/>
       </section>
     </div>
   );
