@@ -51,14 +51,14 @@ const Dashboard = () => {
         <FaHome />
         Home
       </NavLink>
-      {!roleLoading && role === "user" && (
+      {!roleLoading && role === "student" && (
         <>
           <NavLink
-            to="/dashboard/beATeacher"
+            to="/dashboard/my-enroll"
             className="flex gap-3 py-2 items-center pl-4"
           >
             <FaChalkboardTeacher />
-            Be a Teacher
+            My Enrolls
           </NavLink>
         </>
       )}
