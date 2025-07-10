@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "./Sections/Banner";
 import Partners from "./Sections/Partners";
 import PopularClasses from "./Sections/PopularClasses";
+import TeacherFeedback from "./Sections/TeacherFeedback";
 
 const Home = () => {
   return (
@@ -13,7 +14,10 @@ const Home = () => {
         <Partners />
       </section>
       <section>
-        <PopularClasses/>
+        <PopularClasses />
+      </section>
+      <section>
+        <TeacherFeedback />
       </section>
     </div>
   );

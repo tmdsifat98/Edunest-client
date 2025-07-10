@@ -44,7 +44,7 @@ const AllClasses = () => {
   return (
     <div className="overflow-x-auto">
       <h2 className="text-4xl font-bold my-6 text-center text-primary">All Classes</h2>
-      <table className="table table-zebra w-full text-center">
+      <table className="table w-full text-center">
         <thead>
           <tr>
             <th>#</th>
@@ -71,12 +71,12 @@ const AllClasses = () => {
               </td>
               <td>{cls.title}</td>
               <td>{cls.email}</td>
-              <td>{cls.description.slice(0, 50)}...</td>
+              <td>{cls.description.slice(0, 40)}...</td>
               <td>
                 <span
-                  className={`text-sm px-2 py-1 rounded-full ${
+                  className={`text-sm px-2 py-[2px] rounded-lg ${
                     cls.status === "approved"
-                      ? "bg-green-200 text-green-800"
+                      ? "bg-green-600 text-black"
                       : cls.status === "rejected"
                       ? "bg-red-200 text-red-600"
                       : "bg-yellow-200 text-yellow-800"

@@ -5,23 +5,24 @@ import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useUserRole from "../../../hooks/useUserRole";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const MyProfile = () => {
   const { user } = useAuth();
-  const {role} =useUserRole()
+  const { role } = useUserRole();
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-    const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
     if (user?.email) {
-      axiosSecure.get(`/users/${user.email}`)
-        .then(res => {
+      axiosSecure
+        .get(`/users/${user.email}`)
+        .then((res) => {
           setProfileData(res.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.error("Failed to fetch user profile:", err);
         });
     }
@@ -97,9 +98,9 @@ const MyProfile = () => {
     setIsEditing(false);
   };
 
-    if (!profileData) return <LoadingSpinner/>;
+  if (!profileData) return <LoadingSpinner />;
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-base-200">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg max-w-md w-full border border-base-300">
         <div className="flex flex-col items-center text-center">
           {isEditing || (
@@ -118,7 +119,7 @@ const MyProfile = () => {
                 {loading ? (
                   <div className="w-28 h-28 rounded-full border-4 border-dashed border-gray-400 animate-spin"></div>
                 ) : (
-                  <div className="relative mt-12">
+                  <div className="relative mt-10">
                     <div className="w-28 h-28 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-dashed border-gray-400 animate-spin"></div>
                     <img
                       src={formData.photoURL || "/default-avatar.png"}
@@ -141,7 +142,11 @@ const MyProfile = () => {
             </h2>
           )}
           <p className="text-sm text-gray-500 dark:text-gray-300">
-            {role || "User"}
+            {role === "student"
+              ? "Student"
+              : role === "teacher"
+              ? "Teacher"
+              : "Admin"}
           </p>
         </div>
 
@@ -158,7 +163,7 @@ const MyProfile = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="input input-bordered w-full mt-1"
+                className="input input-bordered w-full mt-1 dark:bg-gray-700"
               />
             ) : (
               formData.name
@@ -173,10 +178,10 @@ const MyProfile = () => {
                 name="phone"
                 defaultValue={profileData.phone}
                 onChange={handleChange}
-                className="input input-bordered w-full mt-1"
+                className="input input-bordered w-full mt-1 dark:bg-gray-700"
               />
             ) : (
-               profileData.phone || "No phone number provided"
+              profileData.phone || "No phone number provided"
             )}
           </div>
         </div>
@@ -184,10 +189,16 @@ const MyProfile = () => {
         <div className="mt-6 flex justify-between gap-2">
           {isEditing ? (
             <div className="flex items-center gap-3 justify-between">
-              <button onClick={handleSubmit} className="btn btn-primary">
+              <button
+                onClick={handleSubmit}
+                className="btn btn-primary text-black"
+              >
                 Save Changes
               </button>
-              <button onClick={handleCancel} className="btn btn-secondary btn-outline">
+              <button
+                onClick={handleCancel}
+                className="btn btn-secondary btn-outline"
+              >
                 Cancel
               </button>
             </div>

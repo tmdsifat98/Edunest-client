@@ -71,7 +71,7 @@ const Users = () => {
       <input
         type="text"
         placeholder="Search user by email"
-        className="input input-bordered lg:w-1/2 ml-8 mb-4"
+        className="input input-bordered lg:w-1/2 ml-8 mb-4 dark:bg-gray-800"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />

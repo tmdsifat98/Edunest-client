@@ -2,8 +2,8 @@ import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../../components/LoadingSpinner";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();
@@ -77,12 +77,12 @@ const TeacherRequest = () => {
   }
 
   return (
-    <div className="overflow-x-auto p-4 bg-base-100 shadow rounded">
+    <div className="overflow-x-auto p-4 shadow rounded">
       <h2 className="text-xl font-bold mb-4 text-primary">
         All Teacher Requests
       </h2>
-      <table className="table table-zebra w-full text-center">
-        <thead>
+      <table className="table w-full text-center">
+        <thead className=" dark:text-white">
           <tr>
             <th>SL</th>
             <th>Image</th>

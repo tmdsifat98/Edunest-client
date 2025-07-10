@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import StarRatings from "react-star-ratings";
 
-const TeacherEvaluation = ({ setShowModal, teacherEmail, classId }) => {
+const TeacherEvaluation = ({ setShowModal, uniqueClass }) => {
   const axiosSecure = useAxiosSecure();
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
@@ -23,15 +23,15 @@ const TeacherEvaluation = ({ setShowModal, teacherEmail, classId }) => {
       const payload = {
         description,
         rating,
-        teacherEmail,
-        classId,
-        givenBy: user?.name,
+        teacherEmail: uniqueClass.email,
+        classId: uniqueClass._id,
+        title: uniqueClass.title,
+        givenBy: user?.displayName,
         image: user?.photoURL,
       };
 
       await axiosSecure.post("/evaluation", payload);
       Swal.fire("Thanks!", "Your evaluation has been submitted.", "success");
-
       setShowModal(false);
       setDescription("");
       setRating(0);

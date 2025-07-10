@@ -22,6 +22,14 @@ const MyEnrollClassDetails = () => {
     },
   });
 
+  const { data: uniqueClass = {} } = useQuery({
+    queryKey: ["class", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/class/${id}`);
+      return res.data;
+    },
+  });
+
   const submitAssignment = useMutation({
     mutationFn: async ({ assignmentId, document }) => {
       return await axiosSecure.post("/assignment-submissions", {
@@ -39,7 +47,6 @@ const MyEnrollClassDetails = () => {
       Swal.fire("Error!", "You have already submitted the assignment", "error");
     },
   });
-  const teacherEmail = assignments?.[0]?.teacherEmail;
 
   const handleChange = (assignmentId, value) => {
     setSubmissions((prev) => ({ ...prev, [assignmentId]: value }));
@@ -109,7 +116,10 @@ const MyEnrollClassDetails = () => {
         </div>
       )}
       {showModal && (
-        <TeacherEvaluation classId={id} teacherEmail={teacherEmail} setShowModal={setShowModal} />
+        <TeacherEvaluation
+          uniqueClass={uniqueClass}
+          setShowModal={setShowModal}
+        />
       )}
     </div>
   );
