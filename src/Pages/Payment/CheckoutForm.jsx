@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
-const CheckoutForm = ({ amount, classId, email }) => {
+const CheckoutForm = ({ amount, classId }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ const CheckoutForm = ({ amount, classId, email }) => {
           // Update payment status in the database
           axiosSecure
             .patch(`/classes/enroll/${classId}`, {
-              email: email,
+              email: user.email,
             })
             .then((res) => {
               if (res.data.modifiedCount > 0) {
@@ -90,7 +90,7 @@ const CheckoutForm = ({ amount, classId, email }) => {
               console.error("Error updating payment status:", error);
               Swal.fire({
                 title: "Payment Error",
-                text: "There was an error updating your payment status. Please try again later.",
+                text: `${error.response.data.message}`,
                 icon: "error",
                 confirmButtonText: "OK",
               });
