@@ -1,12 +1,76 @@
-# React + Vite
+# 🌐 EduNest - Modern Learning & Teaching Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **EduNest**, an interactive MERN-stack-based education management platform built for students, teachers, and admins. Empower learning, teaching, and creativity — all in one place.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔐 Admin Access Info
 
-## Expanding the ESLint configuration
+- **Username (email)**: `admin@gmail.com`  
+- **Password**: `Aa1234`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🔗 Live Website
+
+👉 [Visit EduNest](https://edunest-st.web.app)
+
+---
+
+## ✨ Key Features
+
+✅ Role-based dashboard for **Admin**, **Teacher**, and **Student**  
+✅ Teachers can **add classes** with pending approval system  
+✅ Admin can **approve/reject classes** directly from the dashboard  
+✅ Students can **enroll in classes** using **Stripe** secure payments  
+✅ View **class progress**: total enrollments, total assignments, and submissions  
+✅ Teachers can **create assignments**, and students can **submit** those  
+✅ Students can **evaluate teachers** with ratings and feedback  
+✅ Each student can download a **PDF invoice** after successful payment  
+✅ Hackathon/competition registration system with **live registration count**  
+✅ **Popular classes**, **partner logos**, **discount offers**, and **statistics** on homepage  
+
+---
+
+## 🚀 Tech Stack Used
+
+- **Frontend**: React.js, Tailwind CSS, Swiper.js, React Query, SweetAlert2  
+- **Backend**: Node.js, Express.js, MongoDB  
+- **Authentication**: Firebase  
+- **Payment**: Stripe  
+- **PDF Generation**: jsPDF & jsPDF-AutoTable  
+- **File Uploads**: Image + Text based
+
+---
+
+## 🧪 Test Login (Student)
+
+- Email: `student@gmail.com`  
+- Password: `ffffff`
+
+---
+
+## 📦 Installation & Run Locally
+
+### 1. Clone the Repo
+```bash
+git clone https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-tmdsifat98
+cd assignment-12
+```
+
+### Install Dependencies
+```bash
+npm install
+```
+
+###Create a .env file in the root:
+```bash
+(also the firebase credentials)
+VITE_API_URL=http://localhost:3000
+VITE_STRIPE_PUBLISHABLE_KEY=your_key_here
+```
+
+###Run the Development Server
+```bash
+npm run dev
+```
