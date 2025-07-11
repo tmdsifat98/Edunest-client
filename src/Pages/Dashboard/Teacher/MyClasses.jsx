@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../../components/LoadingSpinner";
 import { Link } from "react-router";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const MyClasses = () => {
   const { user } = useAuth();
@@ -87,7 +87,7 @@ const MyClasses = () => {
       <h2 className="text-2xl font-bold mb-4 text-primary">My Classes</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {classes.map((cls) => (
-          <div key={cls._id} className="card bg-base-100 shadow-lg border">
+          <div key={cls._id} className="card bg-base-100 dark:bg-gray-700 shadow-lg border">
             <figure>
               <img
                 src={cls.image}
@@ -103,7 +103,7 @@ const MyClasses = () => {
               <p>
                 <b>Status:</b> {cls.status}
               </p>
-              <p className="text-sm text-gray-600 line-clamp-3">{cls.description}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">{cls.description}</p>
               <p className="text-xs text-gray-400">
                 By: {cls.name} | {cls.email}
               </p>

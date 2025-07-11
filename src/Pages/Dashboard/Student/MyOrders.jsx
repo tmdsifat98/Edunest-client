@@ -57,7 +57,7 @@ const MyOrders = () => {
         <p className="text-center text-lg">No orders found</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="table table-zebra w-full text-center">
+          <table className="table w-full text-center">
             <thead>
               <tr>
                 <th>SL</th>

@@ -100,7 +100,7 @@ const MyProfile = () => {
 
   if (!profileData) return <LoadingSpinner />;
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-[calc(100vh-100px)] flex items-center justify-center p-4">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg max-w-md w-full border border-base-300">
         <div className="flex flex-col items-center text-center">
           {isEditing || (

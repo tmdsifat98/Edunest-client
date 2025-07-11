@@ -6,7 +6,7 @@ Welcome to **EduNest**, an interactive MERN-stack-based education management pla
 
 ## 🔐 Admin Access Info
 
-- **Username (email)**: `admin@gmail.com`  
+- **Email**: `admin@gmail.com`  
 - **Password**: `Aa1234`
 
 ---
@@ -19,16 +19,16 @@ Welcome to **EduNest**, an interactive MERN-stack-based education management pla
 
 ## ✨ Key Features
 
-✅ Role-based dashboard for **Admin**, **Teacher**, and **Student**  
-✅ Teachers can **add classes** with pending approval system  
-✅ Admin can **approve/reject classes** directly from the dashboard  
-✅ Students can **enroll in classes** using **Stripe** secure payments  
-✅ View **class progress**: total enrollments, total assignments, and submissions  
-✅ Teachers can **create assignments**, and students can **submit** those  
-✅ Students can **evaluate teachers** with ratings and feedback  
-✅ Each student can download a **PDF invoice** after successful payment  
-✅ Hackathon/competition registration system with **live registration count**  
-✅ **Popular classes**, **partner logos**, **discount offers**, and **statistics** on homepage  
+- Role-based dashboard for **Admin**, **Teacher**, and **Student**  
+- Teachers can **add classes** with pending approval system  
+- Admin can **approve/reject classes** directly from the dashboard  
+- Students can **enroll in classes** using **Stripe** secure payments  
+- View **class progress**: total enrollments, total assignments, and submissions  
+- Teachers can **create assignments**, and students can **submit** those  
+- Students can **evaluate teachers** with ratings and feedback  
+- Each student can download a **PDF invoice** after successful payment  
+- Hackathon/competition registration system with **live registration count**  
+- **Popular classes**, **partner logos**, **discount offers**, and **statistics** on homepage  
 
 ---
 
@@ -63,14 +63,14 @@ cd assignment-12
 npm install
 ```
 
-###Create a .env file in the root:
+### Create a .env file in the root:
 ```bash
 (also the firebase credentials)
 VITE_API_URL=http://localhost:3000
 VITE_STRIPE_PUBLISHABLE_KEY=your_key_here
 ```
 
-###Run the Development Server
+### Run the Development Server
 ```bash
 npm run dev
 ```

@@ -67,18 +67,18 @@ const TeachOnEduNest = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-base-100 dark:bg-gray-800 shadow rounded mt-15">
+    <div className="max-w-5xl mx-auto p-6 bg-base-100 dark:bg-gray-800 shadow rounded lg:mt-15">
       <h2 className="text-4xl font-bold mb-6 text-primary text-center">
         Teach on EduNest? Fill the form below
       </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-4"
       >
         <div className="flex justify-center items-center gap-3">
           <div className="relative w-16 h-16 tooltip" data-tip="Upload image">
             {loading ? (
-              <div className="w-16 h-16 rounded-full border-4 border-dashed border-gray-400 animate-spin"></div>
+              <div className="w-20 h-20 rounded-full border-4 border-dashed border-gray-400 animate-spin"></div>
             ) : (
               <img
                 src={imageUrl || "https://i.ibb.co/Rk2y0f77/default.webp"}
@@ -93,10 +93,7 @@ const TeachOnEduNest = () => {
               className="absolute inset-0 opacity-0 cursor-pointer"
             />
           </div>
-          <p className="text-2xl font-semibold flex items-center gap-2">
-            {" "}
-            <BsArrowLeft size={20} /> Upload your image here
-          </p>
+         
         </div>
         {/* Experience */}
         <div>

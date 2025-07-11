@@ -4,9 +4,9 @@ import discountImg from "../../../assets/discount.png";
 
 const DiscountOffer = () => {
   return (
-    <section className="bg-gradient-to-b lg:bg-gradient-to-r  from-primary to-secondary py-12 px-6 text-white rounded-xl w-11/12 lg:w-9/12 mx-auto my-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
+    <section className="bg-gradient-to-b lg:bg-gradient-to-r  from-primary to-secondary py-12 px-6 text-white rounded-xl w-11/12 lg:w-9/12 mx-auto my-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
       {/* Left Part */}
-      <div className="lg:w-1/2 space-y-5 text-center lg:text-left lg:pl-24">
+      <div className="md:w-1/2 space-y-5 text-center lg:text-left lg:pl-24">
         <h2 className="text-4xl lg:text-5xl font-bold">
           Special Offer: Get <span className="text-yellow-400">25% OFF</span>
         </h2>
@@ -23,7 +23,7 @@ const DiscountOffer = () => {
       </div>
 
       {/* Right Part */}
-      <div className="lg:w-1/2">
+      <div className="md:w-1/2">
         <img
           src={discountImg}
           alt="Discount Offer"

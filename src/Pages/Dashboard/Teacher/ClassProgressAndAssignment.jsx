@@ -69,12 +69,12 @@ const ClassProgressAndAssignment = () => {
 
       {showModal && (
         <div className="fixed inset-0 bg-black/20 backdrop-blur-xs flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md space-y-4">
+          <div className="bg-white dark:bg-gray-600 p-6 rounded-lg w-full max-w-md space-y-4">
             <h2 className="text-xl font-bold">Create Assignment</h2>
             <input
               type="text"
               placeholder="Assignment Title"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700"
               value={formData.title}
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
@@ -82,14 +82,14 @@ const ClassProgressAndAssignment = () => {
             />
             <input
               type="date"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:bg-gray-700"
               value={formData.deadline}
               onChange={(e) =>
                 setFormData({ ...formData, deadline: e.target.value })
               }
             />
             <textarea
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered w-full dark:bg-gray-700"
               placeholder="Description"
               value={formData.description}
               onChange={(e) =>

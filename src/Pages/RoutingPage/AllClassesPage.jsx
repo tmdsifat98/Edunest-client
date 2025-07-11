@@ -19,13 +19,13 @@ const AllClassesPage = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="md:w-9/12 mx-auto">
+    <div className="lg:w-9/12 mx-auto">
       <h1 className="text-5xl font-semibold text-center my-7">All Classes</h1>
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {classes.map((cls) => (
           <div
             key={cls._id}
-            className="bg-base-100 shadow rounded-xl overflow-hidden border border-base-300"
+            className="bg-base-100 dark:bg-gray-800 shadow rounded-xl overflow-hidden border border-base-300"
           >
             <img
               src={cls.image}

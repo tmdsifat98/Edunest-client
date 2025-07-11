@@ -43,7 +43,7 @@ const AddClass = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-base-100 shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto p-6 bg-base-100 dark:bg-gray-800 shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold text-center mb-6 text-primary">
         Add a New Class
       </h2>
@@ -55,7 +55,7 @@ const AddClass = () => {
           <input
             type="text"
             {...register("title", { required: "Title is required" })}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700"
           />
           {errors.title && <span className="text-red-500">{errors.title.message}</span>}
         </div>
@@ -67,7 +67,7 @@ const AddClass = () => {
             type="text"
             value={user?.displayName || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full bg-gray-100 dark:bg-gray-700"
           />
         </div>
 
@@ -78,7 +78,7 @@ const AddClass = () => {
             type="email"
             value={user?.email || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full bg-gray-100 dark:bg-gray-700"
           />
         </div>
 
@@ -89,7 +89,7 @@ const AddClass = () => {
             type="number"
             step="0.01"
             {...register("price", { required: "Price is required" })}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700"
           />
           {errors.price && <span className="text-red-500">{errors.price.message}</span>}
         </div>
@@ -99,7 +99,7 @@ const AddClass = () => {
           <label className="label">Description</label>
           <textarea
             {...register("description", { required: "Description is required" })}
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full dark:bg-gray-700"
           ></textarea>
           {errors.description && <span className="text-red-500">{errors.description.message}</span>}
         </div>
@@ -110,7 +110,7 @@ const AddClass = () => {
           <input
             type="text"
             {...register("image", { required: "Image URL is required" })}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full dark:bg-gray-700"
           />
           {errors.image && <span className="text-red-500">{errors.image.message}</span>}
         </div>

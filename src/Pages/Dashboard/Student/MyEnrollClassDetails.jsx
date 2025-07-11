@@ -7,11 +7,13 @@ import LoadingSpinner from "../../../Components/LoadingSpinner";
 import NoDataFound from "../../Extra/NoDataFound";
 import TeacherEvaluation from "./TeacherEvoluation";
 import Pagination from "../../../Components/Pagination";
+import useAuth from "../../../hooks/useAuth";
 
 const MyEnrollClassDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const {user}=useAuth()
   const [submissions, setSubmissions] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,6 +51,7 @@ const MyEnrollClassDetails = () => {
     mutationFn: async ({ assignmentId, document }) => {
       return await axiosSecure.post("/assignment-submissions", {
         assignmentId,
+        email:user.email,
         classId: id,
         document,
       });
@@ -81,7 +84,7 @@ const MyEnrollClassDetails = () => {
         onClick={() => setShowModal(true)}
         className="flex justify-end lg:mr-12 mb-5"
       >
-        <button className="btn btn-primary">Teaching Evaluation Report</button>
+        <button className="btn btn-primary text-black">Teaching Evaluation Report</button>
       </div>
       <h2 className="text-4xl font-bold text-primary mb-4">Assignments</h2>
       {isLoading ? (
@@ -90,8 +93,8 @@ const MyEnrollClassDetails = () => {
         <NoDataFound message="No assignment found at this moment" />
       ) : (
         <div className="overflow-x-auto">
-          <table className="table w-full text-center table-zebra">
-            <thead>
+          <table className="table w-full text-center">
+            <thead className="dark:text-white">
               <tr>
                 <th>#</th>
                 <th>Title</th>
@@ -102,16 +105,16 @@ const MyEnrollClassDetails = () => {
             </thead>
             <tbody>
               {assignments.map((assignment, index) => (
-                <tr key={assignment._id}>
+                <tr key={assignment._id} >
                   <td>{index + 1}</td>
                   <td>{assignment.title}</td>
-                  <td>{assignment.description}</td>
+                  <td className="w-1/4">{assignment.description.slice(0,80)}...</td>
                   <td>{new Date(assignment.deadline).toLocaleDateString()}</td>
                   <td className="flex flex-col md:flex-row gap-2 items-center justify-center">
                     <input
                       type="text"
                       placeholder="Paste document link"
-                      className="input input-bordered input-sm"
+                      className="input input-bordered input-sm dark:bg-gray-700"
                       value={submissions[assignment._id] || ""}
                       onChange={(e) =>
                         handleChange(assignment._id, e.target.value)
@@ -119,7 +122,7 @@ const MyEnrollClassDetails = () => {
                     />
                     <button
                       onClick={() => handleSubmit(assignment._id)}
-                      className="btn btn-sm btn-primary"
+                      className="btn btn-sm btn-primary text-black"
                     >
                       Submit
                     </button>
