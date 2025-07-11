@@ -25,6 +25,7 @@ import MyEnrollClassDetails from "../Pages/Dashboard/Student/MyEnrollClassDetail
 import ErrorPage from "../Pages/Error/ErrorPage";
 import TermsAndConditions from "../Pages/Extra/TermsAndConditions";
 import RefundPolicy from "../Pages/Extra/RefundPolicy";
+import PrivacyPolicy from "../Pages/Extra/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: "/payment/:classId", Component: Payment },
       { path: "/terms-and-conditions", Component: TermsAndConditions },
       { path: "/refund-policy", Component: RefundPolicy },
+      { path: "/privacy-policy", Component: PrivacyPolicy },
     ],
   },
   {
