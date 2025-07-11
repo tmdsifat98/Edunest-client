@@ -11,7 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import TeacherRequest from "../Pages/Dashboard/Admin/TeacherRequest";
 import Users from "../Pages/Dashboard/Admin/Users";
-import MyProfile from "../Pages/Dashboard/Admin/MyProfile";
+import MyProfile from "../Pages/Dashboard/MyProfile";
 import TeacherRoute from "./TeacherRoute";
 import AddClass from "../Pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../Pages/Dashboard/Teacher/MyClasses";
@@ -26,6 +26,7 @@ import ErrorPage from "../Pages/Error/ErrorPage";
 import TermsAndConditions from "../Pages/Extra/TermsAndConditions";
 import RefundPolicy from "../Pages/Extra/RefundPolicy";
 import PrivacyPolicy from "../Pages/Extra/PrivacyPolicy";
+import MyOrders from "../Pages/Dashboard/Student/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
       {
         path: "my-enroll",
         element: <MyEnrolls />,
+      },
+      {
+        path: "my-orders",
+        element: <MyOrders/>,
       },
       {
         path: "my-enroll/:id",

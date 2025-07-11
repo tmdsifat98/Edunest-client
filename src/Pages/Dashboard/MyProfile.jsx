@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 import axios from "axios";
-import useUserRole from "../../../hooks/useUserRole";
-import LoadingSpinner from "../../../Components/LoadingSpinner";
+import useUserRole from "../../hooks/useUserRole";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const MyProfile = () => {
   const { user } = useAuth();

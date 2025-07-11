@@ -57,9 +57,9 @@ const Competition = () => {
   };
 
   return (
-    <section className="w-11/12 lg:w-9/12 mx-auto p-6 bg-gradient-to-r from-secondary to-primary text-white rounded-lg shadow-lg my-10 flex items-center">
+    <section className="w-11/12 lg:w-9/12 mx-auto px-6 lg:px-24 pb-0 pt-14 bg-gradient-to-b lg:bg-gradient-to-r from-secondary to-primary text-white rounded-lg shadow-lg my-10 flex flex-col lg:flex-row">
       <div>
-        <h2 className="text-3xl font-bold mb-3 flex items-center gap-3">
+        <h2 className="text-3xl font-bold mb-3">
           Join Our Exciting Hackathon! Win Big Prizes!
         </h2>
 

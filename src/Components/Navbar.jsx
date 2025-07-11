@@ -73,10 +73,12 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content menu absolute bg-white dark:bg-gray-800 bg-red items-center gap-2 rounded-box z-1 w-44 mt-2 p-2 shadow-sm right-0"
+              className="dropdown-content menu absolute bg-white dark:bg-gray-800 bg-red gap-2 rounded-box z-1 w-44 mt-2 p-2 shadow-sm right-0"
             >
-              <Theme />
-              <li>{user.displayName}</li>
+              <div className="w-fit mx-auto mt-2">
+                <Theme />
+              </div>
+              <li className="text-center">{user.displayName}</li>
 
               <li>
                 <Link to="/dashboard"

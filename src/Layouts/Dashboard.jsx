@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import Logo from "../Components/Logo";
 import useUserRole from "../hooks/useUserRole";
+import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
@@ -59,6 +60,13 @@ const Dashboard = () => {
           >
             <FaChalkboardTeacher />
             My Enrolls
+          </NavLink>
+          <NavLink
+            to="/dashboard/my-orders"
+            className="flex gap-3 py-2 items-center pl-4"
+          >
+            <HiOutlineClipboardDocumentList/>
+            My Orders
           </NavLink>
         </>
       )}

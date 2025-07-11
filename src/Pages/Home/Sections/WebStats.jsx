@@ -20,15 +20,15 @@ const WebStats = () => {
 
   return (
     <div className="py-12">
-      <div className="lg:w-7/12 mx-auto px-4 grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-10">
+      <div className="w-11/12 lg:w-9/12 lg:px-24 mx-auto grid grid-cols-1 rounded-xl md:grid-cols-2 bg-gradient-to-tr lg:bg-gradient-to-l from-primary to-secondary items-center justify-center gap-10 py-6 pt-14">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-gray-700 shadow-md p-6 rounded-xl text-center">
-            <div className="w-fit mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-16">
+          <div className="backdrop-blur-xs shadow-lg p-6 rounded-xl text-center">
+            <div className="w-fit mx-auto text-black">
               <FaUser size={26} />
             </div>
-            <p className="text-gray-500 mt-2">Total Users</p>
-            <h2 className="text-3xl font-bold text-primary">
+            <p className="text-gray-800 mt-2">Total Users</p>
+            <h2 className="text-3xl font-bold text-black">
               <CountUp
                 end={stats.totalUsers}
                 duration={4.5}
@@ -38,12 +38,12 @@ const WebStats = () => {
               />
             </h2>
           </div>
-          <div className="bg-white dark:bg-gray-700 shadow-md p-6 rounded-xl text-center">
-            <div className="w-fit mx-auto">
+          <div className="backdrop-blur-xs shadow-lg p-6 rounded-xl text-center">
+            <div className="w-fit mx-auto text-black">
               <PiChalkboardTeacherFill size={35} />
             </div>
-            <p className="text-gray-500 mt-2">Total Classes</p>
-            <h2 className="text-3xl font-bold text-secondary">
+            <p className="text-gray-800 mt-2">Total Classes</p>
+            <h2 className="text-3xl font-bold text-black">
               <CountUp
                 end={stats.totalClasses}
                 duration={4.5}
@@ -53,12 +53,12 @@ const WebStats = () => {
               />
             </h2>
           </div>
-          <div className="bg-white dark:bg-gray-700 col-span-full shadow-md p-6 rounded-xl text-center">
-            <div className="w-fit mx-auto">
+          <div className="backdrop-blur-xs col-span-full shadow-lg p-6 rounded-xl text-center">
+            <div className="w-fit mx-auto text-black">
               <MdHowToReg size={35} />
             </div>
-            <p className="text-gray-500 mt-2">Total Enrollments</p>
-            <h2 className="text-3xl font-bold text-accent">
+            <p className="text-gray-800 mt-2">Total Enrollments</p>
+            <h2 className="text-3xl font-bold text-black">
               <CountUp
                 end={stats.totalEnrollment}
                 duration={4.5}
@@ -71,7 +71,7 @@ const WebStats = () => {
         </div>
 
         {/* Right Side Image */}
-        <div className="w-[400px] mx-auto">
+        <div className="lg:w-[400px] mx-auto">
           <img src={Image} alt="Website Stats"/>
         </div>
       </div>

@@ -6,6 +6,7 @@ import TeacherFeedback from "./Sections/TeacherFeedback";
 import WebStats from "./Sections/WebStats";
 import TeacherInspire from "./Sections/TeacherInspire";
 import Competition from "./Sections/Competition";
+import DiscountOffer from "./Sections/DiscountOffer";
 
 const Home = () => {
   return (
@@ -30,6 +31,9 @@ const Home = () => {
       </section>
       <section>
         <TeacherFeedback />
+      </section>
+      <section>
+        <DiscountOffer/>
       </section>
     </div>
   );

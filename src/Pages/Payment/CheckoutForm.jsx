@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
-const CheckoutForm = ({ amount, classId }) => {
+const CheckoutForm = ({ amount, classId, classInfo }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -14,6 +14,22 @@ const CheckoutForm = ({ amount, classId }) => {
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState("");
   const [proccessing, setProcessing] = useState(false);
+
+  const { title, email, price } = classInfo;
+
+  const generateTransactionId = () => {
+    const timestamp = Date.now().toString(36);
+    const randomPart = Math.random().toString(36).substr(2, 5);
+    return `EDN_${timestamp}_${randomPart}`;
+  };
+  const paymentInfo = {
+    title,
+    teacherEmail: email,
+    price,
+    studentEmail: user.email,
+    transaction_id: generateTransactionId(),
+    createdAt: new Date().toISOString(),
+  };
 
   const handleSubmit = async (event) => {
     setProcessing(true);
@@ -76,14 +92,18 @@ const CheckoutForm = ({ amount, classId }) => {
             })
             .then((res) => {
               if (res.data.modifiedCount > 0) {
-                Swal.fire({
-                  title: "Payment Successful",
-                  text: "Your payment has been processed successfully.",
-                  icon: "success",
-                  showConfirmButton: false,
-                  timer: 1500,
+                axiosSecure.post("orders", paymentInfo).then((res) => {
+                  if (res.data.insertedId) {
+                    Swal.fire({
+                      title: "Payment Successful",
+                      text: "Your payment has been processed successfully.",
+                      icon: "success",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                    navigate("/dashboard/my-enroll");
+                  }
                 });
-                navigate("/dashboard/my-enroll");
               }
             })
             .catch((error) => {
