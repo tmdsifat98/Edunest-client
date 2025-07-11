@@ -3,6 +3,7 @@ import useUserRole from "../../hooks/useUserRole";
 import StudentdHome from "./Student/StudentHome";
 import TeacherDashboardHome from "./Teacher/TeacherDashboardHome";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import AdminDashboardHome from "./Admin/AdminDashboadHome";
 
 const DashboardHome = () => {
   const { role, isLoading } = useUserRole();
@@ -15,7 +16,7 @@ const DashboardHome = () => {
   if (role === "teacher") {
     return <TeacherDashboardHome />;
   }
-  return <div></div>;
+  return <AdminDashboardHome/>;
 };
 
 export default DashboardHome;

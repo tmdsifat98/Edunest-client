@@ -45,7 +45,7 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Login failed! Please check your credentials.",
+          text: "Please enter a valid email or password",
         });
       });
   };
