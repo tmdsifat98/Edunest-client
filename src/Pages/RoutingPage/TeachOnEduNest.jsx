@@ -81,7 +81,7 @@ const TeachOnEduNest = () => {
               <div className="w-20 h-20 rounded-full border-4 border-dashed border-gray-400 animate-spin"></div>
             ) : (
               <img
-                src={imageUrl || "https://i.ibb.co/Rk2y0f77/default.webp"}
+                src={imageUrl || user.photoURL}
                 alt="Profile"
                 className="w-16 h-16 object-cover rounded-full border dark:border-gray-600"
               />
@@ -115,7 +115,7 @@ const TeachOnEduNest = () => {
         <div>
           <label className="label">Name</label>
           <input
-            type="text"
+            type="text" defaultValue={user.displayName}
             {...register("name", { required: "Name is required" })}
             className="input input-bordered w-full dark:bg-gray-700"
             placeholder="Enter your name"

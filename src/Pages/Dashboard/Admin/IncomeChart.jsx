@@ -41,7 +41,7 @@ const IncomeChart = () => {
   });
 
   return (
-    <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md">
+    <div className="bg-white dark:bg-gray-900 lg:p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-primary">
         Teachers' Income Report
       </h2>
@@ -52,7 +52,6 @@ const IncomeChart = () => {
           <BarChart data={incomeData} margin={{ top: 20, right: 30, left: 20, bottom: 25 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="teacherEmail" angle={-15} textAnchor="end" />
-            <YAxis />
             <Legend />
             <Bar
               dataKey="totalIncome"

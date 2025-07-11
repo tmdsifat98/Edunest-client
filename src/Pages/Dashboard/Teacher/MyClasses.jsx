@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
+import NoDataFound from "../../Extra/NoDataFound";
 
 const MyClasses = () => {
   const { user } = useAuth();
@@ -81,13 +82,24 @@ const MyClasses = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-
+  if (classes.length < 1) {
+    return (
+      <NoDataFound
+        message="You have not added any class yet"
+        btnMsg="Add Class"
+        redirectTo="/dashboard/addClass"
+      />
+    );
+  }
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4 text-primary">My Classes</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {classes.map((cls) => (
-          <div key={cls._id} className="card bg-base-100 dark:bg-gray-700 shadow-lg border">
+          <div
+            key={cls._id}
+            className="card bg-base-100 dark:bg-gray-700 shadow-lg border"
+          >
             <figure>
               <img
                 src={cls.image}
@@ -103,7 +115,9 @@ const MyClasses = () => {
               <p>
                 <b>Status:</b> {cls.status}
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">{cls.description}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+                {cls.description}
+              </p>
               <p className="text-xs text-gray-400">
                 By: {cls.name} | {cls.email}
               </p>
@@ -124,7 +138,9 @@ const MyClasses = () => {
                   className="btn btn-sm btn-outline btn-secondary"
                   disabled={cls.status === "pending"}
                 >
-                  <Link to={`/dashboard/myClasses/${cls._id}`}>See Details</Link>
+                  <Link to={`/dashboard/myClasses/${cls._id}`}>
+                    See Details
+                  </Link>
                 </button>
               </div>
             </div>

@@ -146,7 +146,7 @@ const TeacherRequest = () => {
                       teacher.status === "rejected" ||
                       teacher.status === "approved"
                     }
-                    className="btn btn-xs btn-success flex items-center gap-1 cursor-not-allowed"
+                    className="btn btn-xs btn-success flex items-center gap-1"
                   >
                     <FaCheck /> Approve
                   </button>

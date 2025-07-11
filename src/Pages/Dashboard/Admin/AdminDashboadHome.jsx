@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import IncomeChart from "./IncomeChart";
 import useAuth from "../../../hooks/useAuth";
+import { Link } from "react-router";
 
 const AdminDashboardHome = () => {
   const axiosSecure = useAxiosSecure();
@@ -22,7 +23,7 @@ const AdminDashboardHome = () => {
     return <LoadingSpinner/>
   }
   return (
-    <div className="p-6 space-y-5">
+    <div className="lg:p-6 space-y-5">
       <h2 className="text-3xl font-bold text-primary mb-6">
         Welcome, {user.displayName}!(Admin)
       </h2>
@@ -38,9 +39,9 @@ const AdminDashboardHome = () => {
 
       {/* Quick Actions */}
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <button className="btn btn-outline btn-primary w-full">Manage Users</button>
-        <button className="btn btn-outline btn-secondary w-full">Manage Classes</button>
-        <button className="btn btn-outline btn-info w-full">View Reports</button>
+        <Link to="/dashboard/users" className="btn btn-outline btn-primary w-full">Manage Users</Link>
+        <Link to="/dashboard/allClasses" className="btn btn-outline btn-secondary w-full">Manage Classes</Link>
+        <Link to="/dashboard/teacherRequest" className="btn btn-outline btn-info w-full">View Request</Link>
       </div>
       <IncomeChart/>
     </div>
