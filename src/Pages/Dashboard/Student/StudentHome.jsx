@@ -9,6 +9,7 @@ import useAuth from "../../../hooks/useAuth";
 import useStudentDashboardStats from "../../../hooks/useStudentDashboardStats";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import QuickActions from "./QuickActions";
+import StudentRoutine from "./StudentRoutine";
 
 const StudentdHome = () => {
   const { user } = useAuth();
@@ -61,6 +62,7 @@ const StudentdHome = () => {
       </div>
       <h2 className="text-3xl font-semibold text-primary">Quick Actions:</h2>
       <QuickActions/>
+      <StudentRoutine/>
     </div>
   );
 };

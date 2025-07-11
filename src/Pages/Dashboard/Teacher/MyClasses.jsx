@@ -92,7 +92,7 @@ const MyClasses = () => {
               <img
                 src={cls.image}
                 alt="Class"
-                className="h-48 w-full object-cover"
+                className="h-56 w-full object-cover"
               />
             </figure>
             <div className="card-body">
