@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { useParams } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import NoDataFound from "../../Extra/NoDataFound";
 import TeacherEvaluation from "./TeacherEvoluation";
+import Pagination from "../../../Components/Pagination";
 
 const MyEnrollClassDetails = () => {
   const { id } = useParams();
@@ -13,14 +14,28 @@ const MyEnrollClassDetails = () => {
   const queryClient = useQueryClient();
   const [submissions, setSubmissions] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const userCount = useLoaderData();
+
+  const usersPerPage = 10;
+
+  let pages = 0;
+  //paginate calculation
+  if (userCount > usersPerPage) {
+    pages = userCount / usersPerPage;
+  }
+  const totalPages = Math.ceil(pages);
 
   const { data: assignments = [], isLoading } = useQuery({
     queryKey: ["classAssignments", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/assignments/${id}`);
+      const res = await axiosSecure.get(
+        `/assignments/${id}?page=${currentPage}&limit=${usersPerPage}`
+      );
       return res.data;
     },
   });
+  console.log(assignments);
 
   const { data: uniqueClass = {} } = useQuery({
     queryKey: ["class", id],
@@ -113,6 +128,11 @@ const MyEnrollClassDetails = () => {
               ))}
             </tbody>
           </table>
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+          />
         </div>
       )}
       {showModal && (

@@ -24,7 +24,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-1">Useful Links</h3>
           <ul>
             <li>
-              <Link to="/termsAndCondition" className="hover:underline">
+              <Link to="/terms-and-conditions" className="hover:underline">
                 Terms & Conditions
               </Link>
             </li>
@@ -43,14 +43,18 @@ const Footer = () => {
         <div className="lg:flex flex-col items-center">
           <h3 className="text-lg font-semibold mb-1">Contact Us</h3>
           <p className="flex gap-1 items-center">
-            <FaHouse /> <span>Cox's Bazar, Chittagong</span>
+            <FaHouse /> <span>Level-4, Mirpur-10, Dhaka, </span>
           </p>
-          <p className="flex items-center gap-1">
-            <MdEmail /> tmdsifat98@gmail.com
-          </p>
-          <p className="flex items-center gap-1">
+
+          <a
+            href="mailto:support@edunext.com"
+            className="flex items-center gap-1"
+          >
+            <MdEmail /> support@edunext.com
+          </a>
+          <a href="tel:+880 1521730173" className="flex items-center gap-1">
             <MdCall /> +880 1521730173
-          </p>
+          </a>
         </div>
 
         <div className="lg:flex flex-col items-center">

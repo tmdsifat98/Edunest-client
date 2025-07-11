@@ -14,6 +14,7 @@ const AllClasses = () => {
 
   const usersPerPage = 10;
   let pages = 0;
+  console.log(userCount);
   //paginate calculation
   if (userCount > usersPerPage) {
     pages = userCount / usersPerPage;
@@ -28,7 +29,6 @@ const AllClasses = () => {
       return res.data;
     },
   });
-
   // ✅ Approve class
   const approveMutation = useMutation({
     mutationFn: async (id) => {
