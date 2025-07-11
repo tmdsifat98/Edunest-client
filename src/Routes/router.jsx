@@ -52,6 +52,7 @@ const router = createBrowserRouter([
             <TeacherRequest />
           </AdminRoute>
         ),
+        loader: () => fetch(`${import.meta.env.VITE_serverUrl}/teachers-count`),
       },
       {
         path: "users",
@@ -70,6 +71,8 @@ const router = createBrowserRouter([
             <AllClasses />
           </AdminRoute>
         ),
+        loader: () =>
+          fetch(`${import.meta.env.VITE_serverUrl}/classes/count/admin`),
       },
       {
         path: "addClass",
@@ -103,11 +106,11 @@ const router = createBrowserRouter([
       },
       {
         path: "my-enroll",
-        element: <MyEnrolls/>
+        element: <MyEnrolls />,
       },
       {
         path: "my-enroll/:id",
-        element: <MyEnrollClassDetails/>
+        element: <MyEnrollClassDetails />,
       },
     ],
   },
@@ -125,7 +128,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {path:"*",Component:ErrorPage}
+  { path: "*", Component: ErrorPage },
 ]);
 
 export default router;

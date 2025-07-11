@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
+import Pagination from "../../../Components/Pagination";
+import { useLoaderData } from "react-router";
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const userCount = useLoaderData()
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const usersPerPage = 10;
+  let pages = 0;
+  //paginate calculation
+  if (userCount > usersPerPage) {
+    pages = userCount / usersPerPage;
+  }
+  const totalPages = Math.ceil(pages);
 
   // ✅ Fetch all pending or approved classes
   const { data: classes = [], isLoading } = useQuery({
     queryKey: ["adminClasses"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/classes/admin");
+      const res = await axiosSecure.get(`/classes/admin?page=${currentPage}&limit=${usersPerPage}`);
       return res.data;
     },
   });
@@ -43,7 +55,9 @@ const AllClasses = () => {
 
   return (
     <div className="overflow-x-auto">
-      <h2 className="text-4xl font-bold my-6 text-center text-primary">All Classes</h2>
+      <h2 className="text-4xl font-bold my-6 text-center text-primary">
+        All Classes
+      </h2>
       <table className="table w-full text-center">
         <thead>
           <tr>
@@ -59,14 +73,14 @@ const AllClasses = () => {
         <tbody>
           {classes.map((cls, index) => (
             <tr key={cls._id}>
-              <td>{index + 1}</td>
+              <td>{(currentPage - 1) * usersPerPage + index + 1}</td>
               <td>
                 <div className="flex items-center justify-center">
-                    <img
-                  src={cls.image}
-                  alt="class"
-                  className="w-16 h-12 object-cover rounded"
-                />
+                  <img
+                    src={cls.image}
+                    alt="class"
+                    className="w-16 h-12 object-cover rounded"
+                  />
                 </div>
               </td>
               <td>{cls.title}</td>
@@ -107,6 +121,11 @@ const AllClasses = () => {
           ))}
         </tbody>
       </table>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 };

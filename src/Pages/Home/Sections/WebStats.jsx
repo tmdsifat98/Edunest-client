@@ -23,7 +23,7 @@ const WebStats = () => {
       <div className="lg:w-7/12 mx-auto px-4 grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-10">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-gray-700 shadow-md p-6 rounded-xl text-center w-3/4 md:w-full">
+          <div className="bg-white dark:bg-gray-700 shadow-md p-6 rounded-xl text-center">
             <div className="w-fit mx-auto">
               <FaUser size={26} />
             </div>
@@ -38,7 +38,7 @@ const WebStats = () => {
               />
             </h2>
           </div>
-          <div className="bg-white dark:bg-gray-700 shadow-md p-6 rounded-xl text-center w-3/4 md:w-full ml-auto">
+          <div className="bg-white dark:bg-gray-700 shadow-md p-6 rounded-xl text-center">
             <div className="w-fit mx-auto">
               <PiChalkboardTeacherFill size={35} />
             </div>
@@ -53,7 +53,7 @@ const WebStats = () => {
               />
             </h2>
           </div>
-          <div className="bg-white dark:bg-gray-700 col-span-2 shadow-md p-6 rounded-xl text-center w-3/4 md:w-full">
+          <div className="bg-white dark:bg-gray-700 col-span-full shadow-md p-6 rounded-xl text-center">
             <div className="w-fit mx-auto">
               <MdHowToReg size={35} />
             </div>

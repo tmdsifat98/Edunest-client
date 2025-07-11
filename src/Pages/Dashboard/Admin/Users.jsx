@@ -6,6 +6,7 @@ import useDebounce from "../../../hooks/useDebounce";
 import NoDataFound from "../../Extra/NoDataFound";
 import { useLoaderData } from "react-router";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
+import Pagination from "../../../Components/Pagination";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();
@@ -14,9 +15,9 @@ const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const debouncedSearch = useDebounce(searchTerm, 500);
 
-  const usersPerPage =  10
+  const usersPerPage = 10;
 
-   let pages = 0;
+  let pages = 0;
   //paginate calculation
   if (userCount > usersPerPage) {
     pages = userCount / usersPerPage;
@@ -29,9 +30,11 @@ const Users = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["allUsers",currentPage],
+    queryKey: ["allUsers", currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users?page=${currentPage}&limit=${usersPerPage}`);
+      const res = await axiosSecure.get(
+        `/users?page=${currentPage}&limit=${usersPerPage}`
+      );
       return res.data;
     },
     staleTime: 1000 * 60 * 5,
@@ -89,7 +92,7 @@ const Users = () => {
                 <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th className="hidden md:table-caption">Last logged in</th>
+                <th className="hidden md:table-cell">Last logged in</th>
                 <th>Role</th>
                 <th>Make Admin</th>
               </tr>
@@ -97,7 +100,7 @@ const Users = () => {
             <tbody>
               {filteredUsers.map((user, index) => (
                 <tr key={user._id}>
-                  <td>{index + 1}</td>
+                  <td>{(currentPage - 1) * usersPerPage + index + 1}</td>
                   <td>
                     <div className="flex items-center justify-center">
                       <img
@@ -109,7 +112,7 @@ const Users = () => {
                   </td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td className="hidden md:table-caption">
+                  <td className="hidden md:table-cell">
                     {user.lastLogIn
                       ? new Date(user.lastLogIn).toLocaleString()
                       : "Never logged in"}
@@ -138,35 +141,11 @@ const Users = () => {
           </table>
         </div>
       )}
-      <div className="mt-6 flex justify-center gap-2">
-        <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="btn btn-sm"
-        >
-          Prev
-        </button>
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentPage(i + 1)}
-            className={`btn btn-sm ${
-              currentPage === i + 1 ? "btn-primary" : "btn-ghost"
-            }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-        <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
-          className="btn btn-sm"
-        >
-          Next
-        </button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 };

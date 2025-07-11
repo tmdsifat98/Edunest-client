@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
+import noData from '../../assets/nodata.png';
 
-const NoDataFound = ({ message = "No data found.", redirectTo = "/", btn }) => {
+const NoDataFound = ({ message = "No data found.", redirectTo = "/", btnMsg }) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
@@ -9,13 +10,13 @@ const NoDataFound = ({ message = "No data found.", redirectTo = "/", btn }) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-      <img src="https://i.ibb.co/qLk95d9z/nodata.png" alt="" />
+      <img src={noData} alt="" />
       <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
         {message}
       </h2>
-      {btn && (
+      {btnMsg && (
         <button onClick={handleRedirect} className="btn btn-primary text-black">
-          Go Back
+          {btnMsg}
         </button>
       )}
     </div>

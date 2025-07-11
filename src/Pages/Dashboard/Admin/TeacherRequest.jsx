@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
+import { useLoaderData } from "react-router";
+import Pagination from "../../../Components/Pagination";
 
 const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const [currentPage, setCurrentPage] = useState(1);
+  const userCount = useLoaderData()
+
+  const usersPerPage = 10;
+
+  let pages = 0;
+  //paginate calculation
+  if (userCount > usersPerPage) {
+    pages = userCount / usersPerPage;
+  }
+  const totalPages = Math.ceil(pages);
 
   // Fetch pending teacher requests
   const { data: teachers = [], isLoading } = useQuery({
-    queryKey: ["pendingTeachers"],
+    queryKey: ["teachers"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/teachers");
+      const res = await axiosSecure.get(`teachers?page=${currentPage}&limit=${usersPerPage}`);
       return res.data;
     },
   });
@@ -77,7 +90,7 @@ const TeacherRequest = () => {
   }
 
   return (
-    <div className="overflow-x-auto p-4 shadow rounded">
+    <div className="overflow-x-auto">
       <h2 className="text-xl font-bold mb-4 text-primary">
         All Teacher Requests
       </h2>
@@ -129,7 +142,10 @@ const TeacherRequest = () => {
                 <div className="flex gap-2 items-center justify-center">
                   <button
                     onClick={() => approveMutation.mutate(teacher)}
-                    disabled={teacher.status === "rejected" ||teacher.status === "approved"}
+                    disabled={
+                      teacher.status === "rejected" ||
+                      teacher.status === "approved"
+                    }
                     className="btn btn-xs btn-success flex items-center gap-1 cursor-not-allowed"
                   >
                     <FaCheck /> Approve
@@ -147,6 +163,11 @@ const TeacherRequest = () => {
           ))}
         </tbody>
       </table>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 };
