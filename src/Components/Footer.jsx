@@ -34,7 +34,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/refundPolicy" className="hover:underline">
+              <Link to="/refund-policy" className="hover:underline">
                 Refund Policy
               </Link>
             </li>

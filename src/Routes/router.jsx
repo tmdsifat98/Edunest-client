@@ -24,6 +24,7 @@ import MyEnrolls from "../Pages/Dashboard/Student/MyEnrolls";
 import MyEnrollClassDetails from "../Pages/Dashboard/Student/MyEnrollClassDetails";
 import ErrorPage from "../Pages/Error/ErrorPage";
 import TermsAndConditions from "../Pages/Extra/TermsAndConditions";
+import RefundPolicy from "../Pages/Extra/RefundPolicy";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       { path: "/teachOnEduNest", Component: TeachOnEduNest },
       { path: "/payment/:classId", Component: Payment },
       { path: "/terms-and-conditions", Component: TermsAndConditions },
+      { path: "/refund-policy", Component: RefundPolicy },
     ],
   },
   {
