@@ -108,7 +108,7 @@ const MyEnrollClassDetails = () => {
                 <tr key={assignment._id} >
                   <td>{index + 1}</td>
                   <td>{assignment.title}</td>
-                  <td className="w-1/4">{assignment.description.slice(0,80)}...</td>
+                  <td className="w-44 lg:w-1/4">{assignment.description.slice(0,30)}...</td>
                   <td>{new Date(assignment.deadline).toLocaleDateString()}</td>
                   <td className="flex flex-col md:flex-row gap-2 items-center justify-center">
                     <input

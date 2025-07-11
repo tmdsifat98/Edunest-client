@@ -144,7 +144,7 @@ const CheckoutForm = ({ amount, classId, classInfo }) => {
         disabled={!stripe || proccessing}
         className="btn btn-primary text-black px-5 w-fit mx-auto mt-4"
       >
-        {proccessing ? "Processing..." : `Pay $${amount}`}
+        {proccessing ? "Processing..." : `Pay ৳${amount}`}
       </button>
     </form>
   );

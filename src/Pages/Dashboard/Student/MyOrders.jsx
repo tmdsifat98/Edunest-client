@@ -36,7 +36,7 @@ const MyOrders = () => {
         [
           order.title,
           order.transaction_id,
-          `$${order.price}`,
+          `৳${order.price}`,
           order.teacherEmail,
         ],
       ],
@@ -58,13 +58,13 @@ const MyOrders = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="table w-full text-center">
-            <thead>
+            <thead className=" dark:text-white">
               <tr>
                 <th>SL</th>
                 <th>Class Title</th>
                 <th>Price</th>
                 <th>Transaction ID</th>
-                <th>Posted By</th>
+                <th>Your Email</th>
                 <th>Teacher Email</th>
                 <th>Invoice</th>
               </tr>
@@ -74,7 +74,7 @@ const MyOrders = () => {
                 <tr key={order._id}>
                   <td>{index + 1}</td>
                   <td>{order.title}</td>
-                  <td>${order.price}</td>
+                  <td>৳{order.price}</td>
                   <td>{order.transaction_id}</td>
                   <td>{order.studentEmail}</td>
                   <td>{order.teacherEmail}</td>

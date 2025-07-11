@@ -8,6 +8,7 @@ import {
 import useAuth from "../../../hooks/useAuth";
 import useStudentDashboardStats from "../../../hooks/useStudentDashboardStats";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
+import QuickActions from "./QuickActions";
 
 const StudentdHome = () => {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ const StudentdHome = () => {
       </div>
 
       {/* Stats Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-9/12 md:w-11/12 mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-9/12 md:w-full mx-auto">
         <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow flex items-center gap-4">
           <FaBookOpen className="text-blue-600 text-3xl" />
           <div>
@@ -58,6 +59,8 @@ const StudentdHome = () => {
           </div>
         </div>
       </div>
+      <h2 className="text-3xl font-semibold text-primary">Quick Actions:</h2>
+      <QuickActions/>
     </div>
   );
 };
