@@ -41,7 +41,7 @@ const TeacherDashboardHome = () => {
   return (
     <div className="p-5">
       <h2 className="text-3xl font-bold mb-6 text-primary">
-        Welcome to {user.displayName} sir!
+        Welcome {user.displayName} !
       </h2>
 
       {/* Summary Cards */}

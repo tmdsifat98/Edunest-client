@@ -183,6 +183,22 @@ const MyClasses = () => {
                 />
               </div>
               <div>
+                <label className="label">Category</label>
+                <select
+                  {...register("category", {
+                    required: "Category is required",
+                  })}
+                  className="select select-bordered w-full dark:bg-gray-700"
+                >
+                  <option value="">Select class category</option>
+                  <option value="web development">Web Development</option>
+                  <option value="digital marketing">Digital Marketing</option>
+                  <option value="graphics design">Graphics Design</option>
+                  <option value="video editing">Video Editing</option>
+                  <option value="data analysis">Data Analysis</option>
+                </select>
+              </div>
+              <div>
                 <label className="label">Description</label>
                 <textarea
                   {...register("description", { required: true })}

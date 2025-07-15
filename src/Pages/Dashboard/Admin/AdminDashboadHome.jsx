@@ -35,7 +35,7 @@ const AdminDashboardHome = () => {
   return (
     <div className="lg:p-6 space-y-5">
       <h2 className="text-3xl font-bold text-primary mb-6">
-        Welcome, {user.displayName}!(Admin)
+        Welcome, {user.displayName}!
       </h2>
 
       {/* Stats Cards */}

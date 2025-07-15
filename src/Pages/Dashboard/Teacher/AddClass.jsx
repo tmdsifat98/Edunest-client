@@ -25,6 +25,7 @@ const AddClass = () => {
       price: parseFloat(data.price),
       description: data.description,
       image: data.image,
+      category: data.category.toLowerCase(),
       status: "pending",
       createdAt: new Date(),
     };
@@ -48,7 +49,6 @@ const AddClass = () => {
         Add a New Class
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
         {/* Title */}
         <div>
           <label className="label">Class Title</label>
@@ -57,7 +57,9 @@ const AddClass = () => {
             {...register("title", { required: "Title is required" })}
             className="input input-bordered w-full dark:bg-gray-700"
           />
-          {errors.title && <span className="text-red-500">{errors.title.message}</span>}
+          {errors.title && (
+            <span className="text-red-500">{errors.title.message}</span>
+          )}
         </div>
 
         {/* Name (readonly) */}
@@ -82,6 +84,24 @@ const AddClass = () => {
           />
         </div>
 
+        <div>
+          <label className="label">Category</label>
+          <select
+            {...register("category", { required: "Category is required" })}
+            className="select select-bordered w-full dark:bg-gray-700"
+          >
+            <option value="">Select class category</option>
+            <option value="web development">Web Development</option>
+            <option value="digital marketing">Digital Marketing</option>
+            <option value="graphics design">Graphics Design</option>
+            <option value="video editing">Video Editing</option>
+            <option value="data analysis">Data Analysis</option>
+          </select>
+          {errors.category && (
+            <span className="text-red-500">{errors.category.message}</span>
+          )}
+        </div>
+
         {/* Price */}
         <div>
           <label className="label">Price ($)</label>
@@ -91,17 +111,23 @@ const AddClass = () => {
             {...register("price", { required: "Price is required" })}
             className="input input-bordered w-full dark:bg-gray-700"
           />
-          {errors.price && <span className="text-red-500">{errors.price.message}</span>}
+          {errors.price && (
+            <span className="text-red-500">{errors.price.message}</span>
+          )}
         </div>
 
         {/* Description */}
         <div>
           <label className="label">Description</label>
           <textarea
-            {...register("description", { required: "Description is required" })}
+            {...register("description", {
+              required: "Description is required",
+            })}
             className="textarea textarea-bordered w-full dark:bg-gray-700"
           ></textarea>
-          {errors.description && <span className="text-red-500">{errors.description.message}</span>}
+          {errors.description && (
+            <span className="text-red-500">{errors.description.message}</span>
+          )}
         </div>
 
         {/* Image URL */}
@@ -112,7 +138,9 @@ const AddClass = () => {
             {...register("image", { required: "Image URL is required" })}
             className="input input-bordered w-full dark:bg-gray-700"
           />
-          {errors.image && <span className="text-red-500">{errors.image.message}</span>}
+          {errors.image && (
+            <span className="text-red-500">{errors.image.message}</span>
+          )}
         </div>
 
         <button type="submit" className="btn btn-primary w-full">

@@ -126,7 +126,7 @@ const TeachOnEduNest = () => {
           manage your classes and students.
         </p>
         <a
-          href="/dashboard/teacher"
+          href="/dashboard"
           className="btn btn-primary text-black mt-3"
         >
           Go to Dashboard
