@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import { Autoplay, Pagination } from "swiper/modules";
+import { Link } from "react-router";
 
 const Banner = () => {
   const slides = [
@@ -13,25 +14,29 @@ const Banner = () => {
       title: "Code Your Way to Innovation",
       description:
         "Start from logic building to real-world software projects. Learn C, Python, JavaScript and more with expert guidance.",
-      btn: "Start Coding Now",
+      btn: "Start Class",
+      redirect: "/dashboard",
     },
     {
       title: "Design That Speaks Loud",
       description:
         "Unleash your creativity with real-world projects in Photoshop, Illustrator & Canva. Turn ideas into stunning visuals.",
-      btn: "Start Designing",
+      btn: "All Classes",
+      redirect: "/all-classes-page",
     },
     {
       title: "Master the Art of Visual Storytelling",
       description:
         "Learn cinematic editing, transitions, color grading, and effects with industry-level tools like Premiere Pro & DaVinci Resolve",
-      btn: "Learn Video Editing",
+      btn: "Teach on EduNest",
+      redirect: "/teachOnEduNest",
     },
     {
       title: "Build the Web from Scratch",
       description:
         "Learn HTML, CSS, JavaScript, and modern frameworks to create responsive, dynamic, and professional websites.",
-      btn: "Build Your First Website",
+      btn: "Set your routine",
+      redirect: "/dashboard",
     },
   ];
   return (
@@ -63,9 +68,12 @@ const Banner = () => {
                 <p className="text-gray-200 w-3/4 mx-auto mb-6 font-normal lg:font-semibold">
                   {slide.description}
                 </p>
-                <button className="btn btn-primary text-black">
-                 {slide.btn}
-                </button>
+                <Link
+                  to={slide.redirect}
+                  className="btn btn-primary text-black"
+                >
+                  {slide.btn}
+                </Link>
               </div>
             </div>
           </SwiperSlide>

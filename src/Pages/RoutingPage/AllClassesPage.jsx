@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Components/LoadingSpinner";
-import { Link } from "react-router";
 import NoDataFound from "../Extra/NoDataFound";
+import { Link } from "react-router";
 
 const categories = [
   "All",
