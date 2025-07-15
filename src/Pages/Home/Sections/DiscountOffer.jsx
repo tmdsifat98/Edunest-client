@@ -4,16 +4,16 @@ import discountImg from "../../../assets/discount.png";
 
 const DiscountOffer = () => {
   return (
-    <section className="bg-gradient-to-b lg:bg-gradient-to-r  from-primary to-secondary py-12 px-6 text-white rounded-xl w-11/12 lg:w-9/12 mx-auto my-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+    <section className="bg-gradient-to-b lg:bg-gradient-to-r from-primary to-secondary py-16 px-6 text-white rounded-xl w-11/12 lg:w-9/12 mx-auto my-24 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
       {/* Left Part */}
-      <div className="md:w-1/2 space-y-5 text-center lg:text-left lg:pl-24">
+      <div className="md:w-1/2 space-y-3 text-center lg:text-left lg:pl-24">
         <h2 className="text-4xl lg:text-5xl font-bold">
-          Special Offer: Get <span className="text-yellow-400">25% OFF</span>
+          Special Offer: Get <br /> <span className="text-yellow-400 text-5xl mt-4 inline-block">25% OFF</span>
         </h2>
         <p className="text-lg">
           Unlock full access to all our premium courses at a 25% discounted
           rate! Invest once and learn everything — from programming to design,
-          editing, and more!
+          editing, and more...!
         </p>
         <Link to="/all-classes-page">
           <button className="btn bg-yellow-400 text-black font-semibold hover:bg-yellow-300">

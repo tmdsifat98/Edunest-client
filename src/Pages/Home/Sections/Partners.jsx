@@ -31,7 +31,7 @@ const partners = [
 
 const Partners = () => {
   return (
-    <section className="py-16">
+    <section className="my-24">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl lg:text-5xl font-bold mb-10 text-primary">Our Partners</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">

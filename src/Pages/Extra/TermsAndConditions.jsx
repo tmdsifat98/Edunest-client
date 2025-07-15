@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const TermsAndConditions = () => {
+
+     useEffect(() => {
+      document.title = "EduNest | Terms & Condition";
+    }, []);
+  
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 text-gray-800 dark:text-gray-200">
       <h1 className="text-3xl lg:text-4xl font-bold mb-6 text-primary">

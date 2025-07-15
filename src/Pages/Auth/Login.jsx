@@ -51,7 +51,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    document.title = "ACS FS | Login";
+    document.title = "EduNest | Login";
   }, []);
 
   return (

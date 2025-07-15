@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const PrivacyPolicy = () => {
+     useEffect(() => {
+      document.title = "EduNest | Privacy Policy";
+    }, []);
+  
   return (
     <div className="max-w-5xl mx-auto p-6 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-lg shadow-md">
       <h1 className="text-4xl font-bold text-primary mb-6">Privacy Policy</h1>

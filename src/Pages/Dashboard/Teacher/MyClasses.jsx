@@ -113,7 +113,16 @@ const MyClasses = () => {
                 <b>Price:</b> ${cls.price}
               </p>
               <p>
-                <b>Status:</b> {cls.status}
+                <b>Status:</b>{" "}
+                <span
+                  className={`${
+                    cls.status === "approved"
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
+                >
+                  {cls.status}
+                </span>
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
                 {cls.description}
@@ -136,7 +145,9 @@ const MyClasses = () => {
                 </button>
                 <button
                   className="btn btn-sm btn-outline btn-secondary"
-                  disabled={cls.status === "pending"}
+                  disabled={
+                    cls.status === "pending" || cls.status === "rejected"
+                  }
                 >
                   <Link to={`/dashboard/myClasses/${cls._id}`}>
                     See Details

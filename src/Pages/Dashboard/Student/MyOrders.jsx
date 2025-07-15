@@ -36,7 +36,7 @@ const MyOrders = () => {
         [
           order.title,
           order.transaction_id,
-          `৳${order.price}`,
+          `${order.price} tk`,
           order.teacherEmail,
         ],
       ],

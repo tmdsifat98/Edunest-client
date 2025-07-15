@@ -41,7 +41,7 @@ const IncomeChart = () => {
   });
 
   return (
-    <div className="bg-white dark:bg-gray-900 lg:p-6 rounded-lg shadow-md">
+    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-primary">
         Teachers' Income Report
       </h2>

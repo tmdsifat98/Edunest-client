@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Components/LoadingSpinner";
@@ -16,6 +16,11 @@ const AllClassesPage = () => {
     staleTime: 1000 * 60 * 5,
   });
 
+     useEffect(() => {
+      document.title = "EduNest | All Classes";
+    }, []);
+  
+
   if (isLoading) return <LoadingSpinner />;
 
   return (
@@ -25,14 +30,14 @@ const AllClassesPage = () => {
         {classes.map((cls) => (
           <div
             key={cls._id}
-            className="bg-base-100 dark:bg-gray-800 shadow rounded-xl overflow-hidden border border-base-300"
+            className="bg-base-100 flex flex-col dark:bg-gray-800 shadow rounded-xl overflow-hidden border border-base-300"
           >
-            <img
+            <img 
               src={cls.image}
               alt={cls.title}
               className="h-48 w-full object-cover"
             />
-            <div className="p-4 space-y-2">
+            <div className="p-4 pb-0 space-y-2 flex-1">
               <h2 className="text-xl font-bold text-primary">{cls.title}</h2>
               <p className="text-sm text-gray-500">By: {cls.name}</p>
               <p className="text-sm line-clamp-3 h-16">{cls.description}</p>
@@ -42,12 +47,13 @@ const AllClassesPage = () => {
                   Enrolled: {cls.enrolledCount || 0}
                 </span>
               </div>
-              <Link to={`/class/${cls._id}`}>
-                <button className="btn btn-primary btn-sm w-full mt-2">
+              
+            </div>
+            <Link to={`/class/${cls._id}`} className="p-3">
+                <button className="btn btn-primary btn-sm w-full mt-2 flex-none">
                   Enroll
                 </button>
               </Link>
-            </div>
           </div>
         ))}
       </div>

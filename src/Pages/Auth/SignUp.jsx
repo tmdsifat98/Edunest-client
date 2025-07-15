@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import signUpAnimation from "../../assets/signuplottie.json";
@@ -82,6 +82,10 @@ const SignUp = () => {
       setLoading(false);
     }
   };
+  
+  useEffect(() => {
+    document.title = "EduNest | Sign Up";
+  }, []);
 
   return (
     <div className="flex flex-col md:flex-row justify-center md:gap-20 mt-12 md:mt-0 items-center min-h-[calc(100vh-72px)]">

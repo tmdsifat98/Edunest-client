@@ -1,14 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import axios from "axios";
-import { BsArrowLeft } from "react-icons/bs";
+import LoadingSpinner from "../../Components/LoadingSpinner";
+import useUserRole from "../../hooks/useUserRole";
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 
 const TeachOnEduNest = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const { role, isLoading } = useUserRole();
+
+  useEffect(() => {
+    document.title = "Twach on EduNest";
+  }, []);
+
+  const {
+    data,
+    isLoading: dataLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["studentRoutine", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/teachOnEduNest?email=${user.email}`);
+      return res.data;
+    },
+  });
 
   const {
     register,
@@ -17,7 +37,7 @@ const TeachOnEduNest = () => {
     formState: { errors },
   } = useForm();
   const [imageUrl, setImageUrl] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [photoLoading, setPhotoLoading] = useState(false);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -26,7 +46,7 @@ const TeachOnEduNest = () => {
     const formData = new FormData();
     formData.append("image", file);
 
-    setLoading(true);
+    setPhotoLoading(true);
 
     try {
       const res = await axios.post(
@@ -37,15 +57,35 @@ const TeachOnEduNest = () => {
     } catch (err) {
       console.error("Image Upload Failed:", err);
     } finally {
-      setLoading(false);
+      setPhotoLoading(false);
     }
+  };
+
+  const handleAgainSubmit = () => {
+    axiosSecure
+      .patch("/teachers-resubmit", { email: user.email })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount) {
+          refetch();
+          Swal.fire(
+            "Success!",
+            "Your request submitted again for review",
+            "success"
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire("Error", "Something went wrong!", "error");
+      });
   };
 
   const onSubmit = async (data) => {
     try {
       const teacherData = {
         ...data,
-        email:user.email,
+        email: user.email,
         image:
           imageUrl ||
           user?.photoURL ||
@@ -59,12 +99,41 @@ const TeachOnEduNest = () => {
         Swal.fire("Success!", "Your request has been submitted.", "success");
         reset();
         setImageUrl("");
+        refetch();
       }
     } catch (error) {
       console.error(error);
-      Swal.fire("Error", "Something went wrong!", "error");
+      Swal.fire("Error", `${error.response.data.message}`, "error");
     }
   };
+  if (loading || dataLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (role === "teacher") {
+    return (
+      <div className="flex flex-col justify-center items-center min-h-[calc(100vh-400px)] text-center w-full">
+        <div className="flex justify-center mb-4">
+          <FaChalkboardTeacher className="w-16 h-16 text-primary" />
+        </div>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+          You're Already a Teacher
+        </h2>
+        <p className="text-gray-600 dark:text-gray-200 mb-4 lg:w-1/4">
+          You’ve already registered as a teacher. Please visit your dashboard to
+          manage your classes and students.
+        </p>
+        <a
+          href="/dashboard/teacher"
+          className="btn btn-primary text-black mt-3"
+        >
+          Go to Dashboard
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-5xl mx-auto p-6 bg-base-100 dark:bg-gray-800 shadow rounded lg:mt-15">
@@ -77,12 +146,12 @@ const TeachOnEduNest = () => {
       >
         <div className="flex justify-center items-center gap-3">
           <div className="relative w-16 h-16 tooltip" data-tip="Upload image">
-            {loading ? (
+            {photoLoading ? (
               <div className="w-20 h-20 rounded-full border-4 border-dashed border-gray-400 animate-spin"></div>
             ) : (
               <img
-                src={imageUrl || user.photoURL}
-                alt="Profile"
+                src={imageUrl || user?.photoURL}
+                alt="Upload Profile"
                 className="w-16 h-16 object-cover rounded-full border dark:border-gray-600"
               />
             )}
@@ -93,12 +162,12 @@ const TeachOnEduNest = () => {
               className="absolute inset-0 opacity-0 cursor-pointer"
             />
           </div>
-         
         </div>
         {/* Experience */}
         <div>
           <label className="label">Experience</label>
           <select
+            defaultValue={data.experience}
             {...register("experience", { required: "Experience is required" })}
             className="select select-bordered w-full dark:bg-gray-700"
           >
@@ -115,7 +184,8 @@ const TeachOnEduNest = () => {
         <div>
           <label className="label">Name</label>
           <input
-            type="text" defaultValue={user.displayName}
+            type="text"
+            defaultValue={user?.displayName}
             {...register("name", { required: "Name is required" })}
             className="input input-bordered w-full dark:bg-gray-700"
             placeholder="Enter your name"
@@ -130,6 +200,7 @@ const TeachOnEduNest = () => {
           <label className="label">Title</label>
           <input
             type="text"
+            defaultValue={data.title}
             {...register("title", { required: "Title is required" })}
             className="input input-bordered w-full dark:bg-gray-700"
             placeholder="Make a title"
@@ -153,6 +224,7 @@ const TeachOnEduNest = () => {
         <div>
           <label className="label">Category</label>
           <select
+            defaultValue={data?.category}
             {...register("category", { required: "Category is required" })}
             className="select select-bordered w-full dark:bg-gray-700"
           >
@@ -168,12 +240,29 @@ const TeachOnEduNest = () => {
           )}
         </div>
         <div className="md:col-span-2">
-          <button
-            type="submit"
-            className="btn btn-primary w-full mt-3 text-black"
-          >
-            Submit For Review
-          </button>
+          {data.status === "pending" ? (
+            <button
+              type="button"
+              className="btn bg-gray-600 w-full mt-3 text-white"
+            >
+              Submission under Review
+            </button>
+          ) : data.status === "rejected" ? (
+            <button
+              type="button"
+              onClick={handleAgainSubmit}
+              className="btn btn-primary w-full mt-3 text-black"
+            >
+              Request to another
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="btn btn-primary w-full mt-3 text-black"
+            >
+              Submit For Review
+            </button>
+          )}
         </div>
       </form>
     </div>

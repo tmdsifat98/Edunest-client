@@ -22,7 +22,7 @@ const TeacherFeedback = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <section className="my-16 px-4 lg:px-0 w-11/12 lg:w-9/12 mx-auto">
+    <section className="my-24 px-4 lg:px-0 w-11/12 lg:w-9/12 mx-auto">
       <h2 className="text-3xl font-bold text-center text-primary mb-8">
         What Our Students Say
       </h2>

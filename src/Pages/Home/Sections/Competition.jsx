@@ -57,8 +57,8 @@ const Competition = () => {
   };
 
   return (
-    <section className="w-11/12 lg:w-9/12 mx-auto px-6 lg:px-24 pb-0 md:pb-6 pt-14 bg-gradient-to-b lg:bg-gradient-to-r from-secondary to-primary text-white rounded-lg shadow-lg my-10 flex flex-col md:flex-row">
-      <div>
+    <section className="w-11/12 lg:w-9/12 mx-auto px-6 lg:px-24 pb-0 md:pb-6 pt-14 bg-gradient-to-b lg:bg-gradient-to-r from-secondary to-primary text-white rounded-lg shadow-lg my-24 flex flex-col md:flex-row">
+      <div className="md:w-3/4">
         <h2 className="text-3xl font-bold mb-3">
           Join Our Exciting Hackathon! Win Big Prizes!
         </h2>
@@ -85,7 +85,7 @@ const Competition = () => {
             <strong>Prizes:</strong> Cash, Gadgets, Internships
           </li>
         </ul>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center gap-6">
           {user ? (
             competitor.email === user.email ? (
               <button
@@ -118,33 +118,9 @@ const Competition = () => {
           </div>
         </div>
       </div>
-      <img className="h-96" src={prize} alt="" />
+      <img className="h-96 md:w-1/4 lg:w-1/2" src={prize}  />
     </section>
   );
 };
 
 export default Competition;
-
-{
-  /* <div className="flex items-center gap-6">
-          {user ? (
-            <button
-              onClick={handleRegister}
-              disabled={isRegistered}
-              className={`px-6 py-2 rounded-md font-semibold transition ${
-                isRegistered
-                  ? "bg-gray-400 cursor-not-allowed text-black"
-                  : "bg-primary text-black"
-              }`}
-            >
-              {isRegistered ? "Registered" : "Register Now"}
-            </button>
-          ) : (
-            <Link to="/auth/login" className="btn btn-primary text-black">Login to perticipate</Link>
-          )}
-
-          <div className="btn btn-primary text-black btn-outline">
-            Total Registrations: {registrationCount}
-          </div>
-        </div> */
-}

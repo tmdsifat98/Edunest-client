@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "./Sections/Banner";
 import Partners from "./Sections/Partners";
 import PopularClasses from "./Sections/PopularClasses";
@@ -9,6 +9,10 @@ import Competition from "./Sections/Competition";
 import DiscountOffer from "./Sections/DiscountOffer";
 
 const Home = () => {
+     useEffect(() => {
+      document.title = "EduNest | Home";
+    }, []);
+  
   return (
     <div>
       <section>

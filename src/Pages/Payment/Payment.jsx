@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -13,6 +13,11 @@ const Payment = () => {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { classId } = useParams();
+
+     useEffect(() => {
+      document.title = "EduNest | Payment";
+    }, []);
+  
 
   const {
     data: classInfo,

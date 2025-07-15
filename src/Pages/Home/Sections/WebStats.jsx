@@ -6,23 +6,27 @@ import CountUp from "react-countup";
 import { PiChalkboardTeacherFill } from "react-icons/pi";
 import { FaUser } from "react-icons/fa";
 import { MdHowToReg } from "react-icons/md";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const WebStats = () => {
   const axiosLocal = useAxiosLocal();
 
-  const { data: stats = {} } = useQuery({
+  const { data: stats = {},isLoading } = useQuery({
     queryKey: ["websiteStats"],
     queryFn: async () => {
       const res = await axiosLocal.get("/stats");
       return res.data;
     },
   });
+  if(isLoading){
+    return <LoadingSpinner/>
+  }
 
   return (
-    <div className="py-12">
-      <div className="w-11/12 lg:w-9/12 lg:px-24 mx-auto grid grid-cols-1 rounded-xl md:grid-cols-2 bg-gradient-to-tr lg:bg-gradient-to-l from-primary to-secondary items-center justify-center gap-10 py-6 pt-14">
+    <div className="my-24">
+      <div className="w-11/12 lg:w-9/12 lg:px-24 mx-auto flex flex-col md:flex-row rounded-xl bg-gradient-to-tr lg:bg-gradient-to-l from-primary to-secondary items-center justify-center gap-10 py-3 pt-14 lg:pt-5">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-16">
+        <div className="grid grid-cols-2 gap-6 lg:px-16 md:w-3/4 lg:w-full">
           <div className="backdrop-blur-xs shadow-lg p-6 rounded-xl text-center">
             <div className="w-fit mx-auto text-black">
               <FaUser size={26} />
@@ -71,8 +75,8 @@ const WebStats = () => {
         </div>
 
         {/* Right Side Image */}
-        <div className="lg:w-[400px] mx-auto">
-          <img src={Image} alt="Website Stats"/>
+        <div className="mx-auto md:w-1/2 lg:w-full">
+          <img src={Image} alt="Website Stats" />
         </div>
       </div>
     </div>

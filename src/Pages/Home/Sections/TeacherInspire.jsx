@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const TeacherInspire = () => {
   return (
-    <section className="py-16 px-4 lg:px-0">
+    <section className="my-24 px-4 lg:px-0">
       <div className="lg:w-9/12 w-11/12 mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="w-full lg:w-1/2">
           <img

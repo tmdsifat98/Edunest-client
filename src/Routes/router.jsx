@@ -27,6 +27,7 @@ import TermsAndConditions from "../Pages/Extra/TermsAndConditions";
 import RefundPolicy from "../Pages/Extra/RefundPolicy";
 import PrivacyPolicy from "../Pages/Extra/PrivacyPolicy";
 import MyOrders from "../Pages/Dashboard/Student/MyOrders";
+import ForbiddenPage from "../Pages/Extra/ForbiddenPage";
 
 const router = createBrowserRouter([
   {
@@ -35,12 +36,27 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "/all-classes-page", Component: AllClassesPage },
-      { path: "/class/:id", Component: ClassDetails },
-      { path: "/teachOnEduNest", Component: TeachOnEduNest },
+      {
+        path: "/class/:id",
+        element: (
+          <PrivateRoute>
+            <ClassDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/teachOnEduNest",
+        element: (
+          <PrivateRoute>
+            <TeachOnEduNest />
+          </PrivateRoute>
+        ),
+      },
       { path: "/payment/:classId", Component: Payment },
       { path: "/terms-and-conditions", Component: TermsAndConditions },
       { path: "/refund-policy", Component: RefundPolicy },
       { path: "/privacy-policy", Component: PrivacyPolicy },
+      { path: "/forbidden", Component: ForbiddenPage },
     ],
   },
   {
@@ -117,7 +133,7 @@ const router = createBrowserRouter([
       },
       {
         path: "my-orders",
-        element: <MyOrders/>,
+        element: <MyOrders />,
       },
       {
         path: "my-enroll/:id",
