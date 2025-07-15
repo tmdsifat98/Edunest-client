@@ -11,7 +11,7 @@ const TeacherRequest = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [currentPage, setCurrentPage] = useState(1);
-  const userCount = useLoaderData()
+  const userCount = useLoaderData();
 
   const usersPerPage = 10;
 
@@ -26,7 +26,9 @@ const TeacherRequest = () => {
   const { data: teachers = [], isLoading } = useQuery({
     queryKey: ["teachers"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`teachers?page=${currentPage}&limit=${usersPerPage}`);
+      const res = await axiosSecure.get(
+        `teachers?page=${currentPage}&limit=${usersPerPage}`
+      );
       return res.data;
     },
   });
@@ -74,6 +76,7 @@ const TeacherRequest = () => {
     mutationFn: async (teacher) => {
       await axiosSecure.patch(`/teachers/${teacher._id}`, {
         status: "rejected",
+        email: teacher.email,
       });
     },
     onSuccess: () => {
