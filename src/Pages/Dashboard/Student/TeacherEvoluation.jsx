@@ -52,7 +52,7 @@ const TeacherEvaluation = ({ setShowModal, uniqueClass }) => {
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="textarea textarea-bordered w-full mb-4"
+          className="textarea textarea-bordered w-full mb-4 dark:bg-gray-700"
           placeholder="Write your thoughts..."
         />
 
