@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import { RiDownloadFill } from "react-icons/ri";
+import NoDataFound from "../../Extra/NoDataFound";
 
 const MyOrders = () => {
   const { user } = useAuth();
@@ -47,14 +48,14 @@ const MyOrders = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-3xl font-bold mb-6 text-center text-primary">
+      <h2 className="text-3xl font-bold mb-6 text-primary">
         My Orders
       </h2>
 
       {isLoading ? (
         <LoadingSpinner />
       ) : orders.length === 0 ? (
-        <p className="text-center text-lg">No orders found</p>
+        <NoDataFound message="No orders found" btnMsg="Enroll Classes" redirectTo="/all-classes-page"/>
       ) : (
         <div className="overflow-x-auto">
           <table className="table w-full text-center">

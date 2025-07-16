@@ -14,7 +14,6 @@ const AllClasses = () => {
 
   const usersPerPage = 10;
   let pages = 0;
-  console.log(userCount);
   //paginate calculation
   if (userCount > usersPerPage) {
     pages = userCount / usersPerPage;
@@ -23,7 +22,7 @@ const AllClasses = () => {
 
   // ✅ Fetch all pending or approved classes
   const { data: classes = [], isLoading } = useQuery({
-    queryKey: ["adminClasses"],
+    queryKey: ["adminClasses",currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(`/classes/admin?page=${currentPage}&limit=${usersPerPage}`);
       return res.data;

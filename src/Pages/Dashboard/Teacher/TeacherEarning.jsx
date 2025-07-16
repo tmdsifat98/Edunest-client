@@ -29,7 +29,7 @@ const TeacherEarning = () => {
   });
   console.log(earnings);
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md w-full">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full">
       <h2 className="text-xl font-semibold mb-4 text-center text-primary">
         Earnings Per Class
       </h2>

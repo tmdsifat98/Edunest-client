@@ -205,7 +205,7 @@ const MyProfile = () => {
           ) : (
             <button
               onClick={() => setIsEditing(true)}
-              className="btn btn-primary w-full"
+              className="btn btn-primary w-full text-black"
             >
               Edit Profile
             </button>

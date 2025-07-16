@@ -13,7 +13,7 @@ const TeacherRequest = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const userCount = useLoaderData();
 
-  const usersPerPage = 10;
+  const usersPerPage = 5;
 
   let pages = 0;
   //paginate calculation
@@ -24,7 +24,7 @@ const TeacherRequest = () => {
 
   // Fetch pending teacher requests
   const { data: teachers = [], isLoading } = useQuery({
-    queryKey: ["teachers"],
+    queryKey: ["teachers", currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `teachers?page=${currentPage}&limit=${usersPerPage}`
@@ -32,8 +32,6 @@ const TeacherRequest = () => {
       return res.data;
     },
   });
-
-  console.log(teachers);
 
   // Approve teacher request
   const approveMutation = useMutation({

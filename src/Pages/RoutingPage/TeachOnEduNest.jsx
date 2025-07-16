@@ -65,7 +65,6 @@ const TeachOnEduNest = () => {
     axiosSecure
       .patch("/teachers-resubmit", { email: user.email })
       .then((res) => {
-        console.log(res.data);
         if (res.data.modifiedCount) {
           refetch();
           Swal.fire(
