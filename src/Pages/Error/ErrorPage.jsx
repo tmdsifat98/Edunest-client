@@ -5,7 +5,7 @@ import error from "../../assets/errorpage.png";
 
 const ErrorPage = () => {
   useEffect(() => {
-    document.title = "EduNest | Error";
+    document.title = "Error || EduNest";
   }, []);
   return (
     <div className="flex flex-col justify-center items-center h-screen">

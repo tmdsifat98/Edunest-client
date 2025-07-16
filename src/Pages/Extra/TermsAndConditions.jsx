@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const TermsAndConditions = () => {
 
      useEffect(() => {
-      document.title = "EduNest | Terms & Condition";
+      document.title = "Terms & Condition  || EduNest";
     }, []);
   
   return (

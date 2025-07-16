@@ -25,7 +25,7 @@ const AdminDashboardHome = () => {
     },
   });
   useEffect(() => {
-    document.title = "EduNest | Dashboard";
+    document.title = "Dashboard || EduNest";
   }, []);
 
   if (isLoading) {

@@ -29,7 +29,7 @@ const AllClassesPage = () => {
   });
 
   useEffect(() => {
-    document.title = "EduNest | All Classes";
+    document.title = " All Classes || EduNest";
   }, []);
   return (
     <div className="lg:w-9/12 mx-auto">

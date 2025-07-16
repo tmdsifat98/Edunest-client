@@ -84,7 +84,7 @@ const SignUp = () => {
   };
   
   useEffect(() => {
-    document.title = "EduNest | Sign Up";
+    document.title = "Sign Up || Edunest";
   }, []);
 
   return (

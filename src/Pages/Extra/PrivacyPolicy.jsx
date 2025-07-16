@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const PrivacyPolicy = () => {
      useEffect(() => {
-      document.title = "EduNest | Privacy Policy";
+      document.title = "Privacy Policy || EduNest";
     }, []);
   
   return (

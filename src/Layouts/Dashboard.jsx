@@ -128,7 +128,7 @@ const Dashboard = () => {
     </>
   );
   useEffect(() => {
-    document.title = "EduNest || Dashboard";
+    document.title = " Dashboard || EduNest";
   }, []);
   return (
     <div className="drawer lg:drawer-open dark:bg-gray-900 dark:text-gray-200">

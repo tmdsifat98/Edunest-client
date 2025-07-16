@@ -15,7 +15,7 @@ const Payment = () => {
   const { classId } = useParams();
 
      useEffect(() => {
-      document.title = "EduNest | Payment";
+      document.title = "Payment || EduNest";
     }, []);
   
 

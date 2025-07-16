@@ -13,7 +13,7 @@ const TeacherRequest = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const userCount = useLoaderData();
 
-  const usersPerPage = 5;
+  const usersPerPage = 10;
 
   let pages = 0;
   //paginate calculation

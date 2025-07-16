@@ -10,7 +10,7 @@ import DiscountOffer from "./Sections/DiscountOffer";
 
 const Home = () => {
      useEffect(() => {
-      document.title = "EduNest | Home";
+      document.title = "Home || EduNest";
     }, []);
   
   return (

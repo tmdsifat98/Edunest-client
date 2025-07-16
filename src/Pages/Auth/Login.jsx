@@ -51,7 +51,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    document.title = "EduNest | Login";
+    document.title = "Login | EduNest";
   }, []);
 
   return (

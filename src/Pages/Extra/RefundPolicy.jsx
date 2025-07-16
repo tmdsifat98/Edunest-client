@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const RefundPolicy = () => {
 
      useEffect(() => {
-      document.title = "EduNest | Refund Policy";
+      document.title = " Refund Policy || EduNest";
     }, []);
   
   return (
