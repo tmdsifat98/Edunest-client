@@ -28,6 +28,7 @@ import RefundPolicy from "../Pages/Extra/RefundPolicy";
 import PrivacyPolicy from "../Pages/Extra/PrivacyPolicy";
 import MyOrders from "../Pages/Dashboard/Student/MyOrders";
 import ForbiddenPage from "../Pages/Extra/ForbiddenPage";
+import AboutUs from "../Pages/RoutingPage/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
       { path: "/refund-policy", Component: RefundPolicy },
       { path: "/privacy-policy", Component: PrivacyPolicy },
       { path: "/forbidden", Component: ForbiddenPage },
+      { path: "/about-us", Component: AboutUs },
     ],
   },
   {

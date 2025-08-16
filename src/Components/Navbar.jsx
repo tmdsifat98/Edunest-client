@@ -39,6 +39,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/teachOnEduNest">Teach on EduNest</NavLink>
       </li>
+      <li>
+        <NavLink to="/about-us">About Us</NavLink>
+      </li>
     </>
   );
   return (
