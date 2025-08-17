@@ -32,12 +32,15 @@ const MyOrders = () => {
     doc.text(`Student Email: ${user.studentEmail}`, 20, 42);
     doc.text(`Transaction ID: ${order.transaction_id}`, 20, 49);
     autoTable(doc, {
-      head: [["Class Title", "transaction Id", "Price", "Teacher Email"]],
+      head: [
+        ["Class Title", "transaction Id", "Price", "Date", "Teacher Email"],
+      ],
       body: [
         [
           order.title,
           order.transaction_id,
           `${order.price} tk`,
+          new Date().toLocaleDateString(),
           order.teacherEmail,
         ],
       ],
@@ -48,14 +51,16 @@ const MyOrders = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-3xl font-bold mb-6 text-primary">
-        My Orders
-      </h2>
+      <h2 className="text-3xl font-bold mb-6 text-primary">My Orders</h2>
 
       {isLoading ? (
         <LoadingSpinner />
       ) : orders.length === 0 ? (
-        <NoDataFound message="No orders found" btnMsg="Enroll Classes" redirectTo="/all-classes-page"/>
+        <NoDataFound
+          message="No orders found"
+          btnMsg="Enroll Classes"
+          redirectTo="/all-classes-page"
+        />
       ) : (
         <div className="overflow-x-auto">
           <table className="table w-full text-center">
