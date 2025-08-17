@@ -36,12 +36,18 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-classes-page">All Classes</NavLink>
       </li>
-      <li>
-        <NavLink to="/teachOnEduNest">Teach on EduNest</NavLink>
-      </li>
+     
       <li>
         <NavLink to="/about-us">About Us</NavLink>
       </li>
+       {user && <>
+       <li>
+        <NavLink to="/teachOnEduNest">Teach on EduNest</NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard">Dashboard</NavLink>
+      </li>
+       </>}
     </>
   );
   return (
@@ -83,13 +89,6 @@ const Navbar = () => {
               </div>
               <li className="text-center">{user.displayName}</li>
 
-              <li>
-                <Link to="/dashboard"
-                  className="btn btn-primary btn-outline"
-                >
-                  Dashboard
-                </Link>
-              </li>
               <li>
                 <button
                   onClick={handleLogOut}

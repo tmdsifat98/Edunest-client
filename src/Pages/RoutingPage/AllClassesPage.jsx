@@ -17,11 +17,13 @@ const AllClassesPage = () => {
   const axiosSecure = useAxiosSecure();
   const [cat, setCat] = useState("All");
 
+  const [sort, setSort] = useState("");
+
   const { data: classes = [], isLoading } = useQuery({
-    queryKey: ["approvedClasses", cat],
+    queryKey: ["approvedClasses", cat, sort],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/classes-home?status=approved&category=${cat}`
+        `/classes-home?status=approved&category=${cat}&sort=${sort}`
       );
       return res.data;
     },
@@ -34,22 +36,33 @@ const AllClassesPage = () => {
   return (
     <div className="lg:w-9/12 mx-auto">
       <h1 className="text-5xl font-semibold text-center my-7">All Classes</h1>
-      <div className="flex flex-wrap justify-center gap-4 mt-6 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-6 mt-6 mb-8 sticky top-18">
+        {/* Category buttons */}
         {categories.map((category, index) => (
           <button
             key={index}
             onClick={() => setCat(category)}
             className={`px-5 py-1 rounded-full transition-colors duration-300 capitalize cursor-pointer
-        ${
-          cat === category
-            ? "bg-primary text-white dark:text-black"
-            : "bg-gray-200 dark:bg-gray-600 text-black dark:text-white"
-        }
-      `}
+      ${
+        cat === category
+          ? "bg-primary text-white dark:text-black"
+          : "bg-gray-200 dark:bg-gray-600 text-black dark:text-white"
+      }`}
           >
             {category}
           </button>
         ))}
+
+        {/* Sorting Dropdown */}
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="select select-bordered select-sm dark:bg-gray-700"
+        >
+          <option disabled value="">Sort by</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
       </div>
       {isLoading ? (
         <LoadingSpinner />
