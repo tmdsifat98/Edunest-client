@@ -73,7 +73,7 @@ const Competition = () => {
 
         <ul className="mb-6 list-disc pl-6 space-y-1">
           <li>
-            <strong>Date:</strong> July 20 - July 25
+            <strong>Date:</strong> September 20 - September 25
           </li>
           <li>
             <strong>Theme:</strong> Innovative Tech Solutions

@@ -66,6 +66,7 @@ const WebStats = () => {
               <CountUp
                 end={stats.totalEnrollment}
                 duration={4.5}
+                suffix="+"
                 separator=","
                 enableScrollSpy
                 scrollSpyOnce={false}
