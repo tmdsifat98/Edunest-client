@@ -73,7 +73,7 @@ const ClassDetails = () => {
 
       <button
         onClick={handlePay}
-        className="btn btn-primary w-full mt-4"
+        className="btn btn-primary text-black w-full mt-4"
         disabled={redirecting}
       >
         {redirecting ? "Redirecting..." : "Pay & Enroll"}

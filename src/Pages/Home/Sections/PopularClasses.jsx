@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import useAxiosLocal from "../../../hooks/useAxiosLocal";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
+import { Link } from "react-router";
 
 const PopularClasses = () => {
   const axiosLocal = useAxiosLocal();
@@ -41,22 +42,26 @@ const PopularClasses = () => {
         {classes.map((cls) => (
           <SwiperSlide key={cls._id}>
             <div className="bg-base-100 dark:bg-gray-800 border border-gray-200 rounded-lg p-5 shadow-md">
-              <img
-                src={cls.image}
-                alt={cls.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <h3 className="text-xl font-semibold text-primary">
-                {cls.title}
-              </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">
-                By: {cls.name}
-              </p>
-              <p className="text-sm mb-3 line-clamp-2 h-11">{cls.description}...</p>
-              <div className="flex justify-between items-center text-sm font-medium">
-                <span>🎓 {cls.enrolledCount} Student(s) enrolled</span>
-                <span className="text-accent">৳{cls.price}</span>
-              </div>
+              <Link  to={`/class/${cls._id}`}>
+                <img
+                  src={cls.image}
+                  alt={cls.title}
+                  className="w-full h-48 object-cover rounded-md mb-4"
+                />
+                <h3 className="text-xl font-semibold text-primary">
+                  {cls.title}
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">
+                  By: {cls.name}
+                </p>
+                <p className="text-sm mb-3 line-clamp-2 h-11">
+                  {cls.description}...
+                </p>
+                <div className="flex justify-between items-center text-sm font-medium">
+                  <span>🎓 {cls.enrolledCount} Student(s) enrolled</span>
+                  <span className="text-accent">৳{cls.price}</span>
+                </div>
+              </Link>
             </div>
           </SwiperSlide>
         ))}

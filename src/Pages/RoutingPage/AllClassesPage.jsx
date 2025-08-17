@@ -95,8 +95,8 @@ const AllClassesPage = () => {
                   </div>
                 </div>
                 <Link to={`/class/${cls._id}`} className="p-3">
-                  <button className="btn btn-primary btn-sm w-full mt-2 flex-none">
-                    Enroll
+                  <button className="btn btn-primary btn-sm text-black w-full mt-2 flex-none">
+                    View more
                   </button>
                 </Link>
               </div>
