@@ -7,6 +7,7 @@ import WebStats from "./Sections/WebStats";
 import TeacherInspire from "./Sections/TeacherInspire";
 import Competition from "./Sections/Competition";
 import DiscountOffer from "./Sections/DiscountOffer";
+import Newsletter from "./Sections/NewsLatter";
 
 const Home = () => {
      useEffect(() => {
@@ -38,6 +39,9 @@ const Home = () => {
       </section>
       <section>
         <DiscountOffer/>
+      </section>
+      <section>
+        <Newsletter/>
       </section>
     </div>
   );
