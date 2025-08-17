@@ -13,7 +13,7 @@ const Newsletter = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
           Stay Updated with EduNest
         </h2>
-        <p className="text-base-content/70 mb-8">
+        <p className="text-gray-700 dark:text-gray-200 mb-8">
           Subscribe to our newsletter and never miss updates about new courses,
           events, and learning resources.
         </p>
@@ -28,14 +28,14 @@ const Newsletter = () => {
           />
           <button
             type="submit"
-            className="btn btn-primary w-full sm:w-auto shadow-md"
+            className="btn btn-primary w-full text-black sm:w-auto shadow-md"
           >
             Subscribe
           </button>
         </form>
 
         {/* Small note */}
-        <p className="text-xs text-base-content/60 mt-4">
+        <p className="text-xs text-gray-700 dark:text-gray-200 mt-4">
           We respect your privacy 💙. Unsubscribe anytime.
         </p>
       </div>

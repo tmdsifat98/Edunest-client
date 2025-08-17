@@ -34,7 +34,7 @@ const AllClassesPage = () => {
     document.title = " All Classes || EduNest";
   }, []);
   return (
-    <div className="lg:w-9/12 mx-auto">
+    <div className="lg:w-5/6 mx-auto">
       <h1 className="text-5xl font-semibold text-center my-7">All Classes</h1>
       <div className="flex flex-wrap justify-center gap-2 sm:gap-6 mt-6 mb-8 sticky top-18">
         {/* Category buttons */}
@@ -70,7 +70,7 @@ const AllClassesPage = () => {
         <NoDataFound message="Opps! No classes found with this category" />
       ) : (
         <div className=" min-h-[calc(100vh-500px)]">
-          <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {classes.map((cls) => (
               <div
                 key={cls._id}
